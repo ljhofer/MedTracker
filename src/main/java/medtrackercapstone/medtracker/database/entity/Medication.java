@@ -21,10 +21,10 @@ public class Medication {
     @Column(name = "name")
     private String name;
 
-    @Column(name="med_purpose")
+    @Column(name =" med_purpose")
     private String medPurpose;
 
-    @Column(name="special_instructions")
+    @Column(name = "special_instructions")
     private String specialInstructions;
 
 
