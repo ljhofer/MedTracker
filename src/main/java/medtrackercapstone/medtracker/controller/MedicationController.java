@@ -1,0 +1,20 @@
+package medtrackercapstone.medtracker.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import medtrackercapstone.medtracker.database.dao.MedicationDAO;
+import medtrackercapstone.medtracker.database.dao.UserDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Slf4j
+@Controller
+public class MedicationController {
+
+    @Autowired
+    private MedicationDAO medicationDao;
+
+//    @RequestMapping
+
+
+}
