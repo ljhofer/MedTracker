@@ -21,8 +21,8 @@ public class Log {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "special_instructions")
-    private String specialInstructions;
+    @Column(name = "side_effects")
+    private String sideEffects;
 
     @Column(name = "timestamp")
     @Temporal(TemporalType.DATE)

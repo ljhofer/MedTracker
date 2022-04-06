@@ -1,0 +1,22 @@
+body {
+    background: url("../images/laurynas-mereckas-1TL8AoEDj_c-unsplash.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+#title {
+    color: black;
+    text-align: center;
+    margin-top: 35px;
+    font-size: 75px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+#sub-title {
+    color: black;
+    text-align: center;
+    font-size: 45px;
+}
