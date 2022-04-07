@@ -35,12 +35,12 @@ public class UserController {
 
         return response;
     }
-//
-//    // This method now becomes a create and an edit based on if the user id is populated in the registerFormBean
-//    @RequestMapping(value = "/user/registerSubmit", method = RequestMethod.POST)
-//    public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
-//        ModelAndView response = new ModelAndView();
-//
+
+    // This method now becomes a create and an edit based on if the user id is populated in the registerFormBean
+    @RequestMapping(value = "/user/registerSubmit", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView registerSubmit(@Valid RegisterFormBean form) throws Exception {
+        ModelAndView response = new ModelAndView();
+
 //        if (bindingResult.hasErrors() ) {
 //            for ( ObjectError error : bindingResult.getAllErrors()) {
 //                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
@@ -51,29 +51,29 @@ public class UserController {
 //            response.setViewName("/user/register");
 //            return response;
 //        }
-//
-//        // first try to load the user from the database using the incoming id on the form
-//        User user = userDao.findById(form.getId());
-//
-//        //now if the id from the database is null then it is a create
-//        if ( form.getId() == null ) {
-//
-//            user = new User();
-//
-//        }
-//
-//        user.setEmail(form.getEmail());
-//        user.setName(form.getName());
-//        user.setPassword(form.getPassword());
-//
-//        userDao.save(user);
-//
-//        log.info(form.toString());
-//
-//        // Will send us to the edit page for this user which will be responsible for loading the user from the database and rendering the info
-//        // When you use redirect: it tells spring to tredirect page, uses an actual URL rather than a view name path
-//        response.setViewName("redirect:/user/edit/" + user.getId());
-//
-//        return response;
-//    }
+
+        // first try to load the user from the database using the incoming id on the form
+        User user = userDao.findById(form.getId());
+
+        //now if the id from the database is null then it is a create
+        if ( user == null ) {
+
+            user = new User();
+
+        }
+
+        user.setEmail(form.getEmail());
+        user.setName(form.getName());
+        user.setPassword(form.getPassword());
+
+        userDao.save(user);
+
+        log.info(form.toString());
+
+        // Will send us to the edit page for this user which will be responsible for loading the user from the database and rendering the info
+        // When you use redirect: it tells spring to redirect page, uses an actual URL rather than a view name path
+        response.setViewName("redirect:/user/dashboard");
+
+        return response;
+    }
 }
