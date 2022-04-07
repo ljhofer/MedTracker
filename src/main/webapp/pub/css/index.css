@@ -20,3 +20,14 @@ body {
     text-align: center;
     font-size: 45px;
 }
+
+
+/*Styles for accordion feature on user dashboard*/
+.accordion {
+    margin: 30px;
+}
+
+/*.accordion-button {*/
+/*    color: black;*/
+/*    background-color: bisque;*/
+/*}*/
