@@ -3,7 +3,9 @@ package medtrackercapstone.medtracker.controller;
 
 import lombok.extern.slf4j.Slf4j;
 //import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.entity.User;
+import medtrackercapstone.medtracker.formbean.RegisterFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,20 +21,20 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-//    @Autowired
-//    private UserDAO userDao;
+    @Autowired
+    private UserDAO userDao;
 
-//    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
-//    public ModelAndView register() throws Exception {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/register");
-//
-//        // Preseeding the form
-//        RegisterFormBean form = new RegisterFormBean();
-//        response.addObject("form", form);
-//
-//        return response;
-//    }
+    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
+    public ModelAndView register() throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("user/register");
+
+        // Preseeding the form
+        RegisterFormBean form = new RegisterFormBean();
+        response.addObject("form", form);
+
+        return response;
+    }
 //
 //    // This method now becomes a create and an edit based on if the user id is populated in the registerFormBean
 //    @RequestMapping(value = "/user/registerSubmit", method = RequestMethod.POST)
