@@ -21,10 +21,10 @@ public class MedicationController {
     @Autowired
     private MedicationDAO medicationDao;
 
-    @RequestMapping(value = "/user/dashboard", method = RequestMethod.GET )
+    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
     public ModelAndView findAll() {
         ModelAndView response = new ModelAndView();
-        response.setViewName("user/dashboard");
+        response.setViewName("user/userDashboard");
 
         // Creates a new array of all medications
         List<Medication> meds = new ArrayList<>();

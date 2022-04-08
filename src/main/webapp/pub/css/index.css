@@ -31,3 +31,9 @@ body {
 /*    color: black;*/
 /*    background-color: bisque;*/
 /*}*/
+
+.userDashboardHeader {
+    color: white;
+    display: inline;
+    text-align: right;
+}

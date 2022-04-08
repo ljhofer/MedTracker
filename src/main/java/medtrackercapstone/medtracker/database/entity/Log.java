@@ -29,7 +29,8 @@ public class Log {
     private Date createDate;
 
 
-    // Add med foreign key here
-
+    // TODO: Add med foreign key here
+    @Column(name = "med_id")
+    private Integer medId;
 
 }

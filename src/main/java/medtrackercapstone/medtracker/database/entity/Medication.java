@@ -5,6 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,6 +28,9 @@ public class Medication {
 
     @Column(name = "special_instructions")
     private String specialInstructions;
+
+//    @OneToMany(mappedBy = "medications", fetch = FetchType.EAGER )
+//    private List<User> users = new ArrayList();
 
 
 

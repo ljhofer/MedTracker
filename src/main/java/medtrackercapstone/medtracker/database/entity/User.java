@@ -3,8 +3,11 @@ package medtrackercapstone.medtracker.database.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +31,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
+//    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER )
+//    private List<Medication> medications = new ArrayList();
 
 }

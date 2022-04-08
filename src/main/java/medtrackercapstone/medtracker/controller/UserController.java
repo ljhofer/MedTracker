@@ -72,7 +72,7 @@ public class UserController {
 
         // Will send us to the edit page for this user which will be responsible for loading the user from the database and rendering the info
         // When you use redirect: it tells spring to redirect page, uses an actual URL rather than a view name path
-        response.setViewName("redirect:/user/dashboard");
+        response.setViewName("redirect:/user/userDashboard");
 
         return response;
     }
