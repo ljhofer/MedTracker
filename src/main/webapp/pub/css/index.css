@@ -7,6 +7,17 @@ body {
 
 }
 
+/*Styling for buttons*/
+.btn {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.btn:hover {
+    background-color: orangered;
+    font-weight: bolder;
+}
+
 #title {
     color: black;
     text-align: center;
@@ -36,4 +47,8 @@ body {
     color: white;
     display: inline;
     text-align: right;
+}
+
+.userDashboardButton {
+    margin: 15px;
 }

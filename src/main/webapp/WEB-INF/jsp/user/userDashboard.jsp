@@ -8,7 +8,7 @@
             <div class="col-6">
                 <div class="accordion" id="medicationAccordion">
                     <h1 class="userDashboardHeader">My Medications</h1>
-                    <a href="contact_us.html" class="btn btn-secondary"> + Add a new med</a>
+                    <a href="contact_us.html" class="btn btn-secondary userDashboardButton"> + Add New Med</a>
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="${med.id}">
@@ -32,7 +32,7 @@
             <div class="col-6">
                 <div class="accordion" id="logAccordion">
                     <h1 class="userDashboardHeader">My Logs</h1>
-                    <a href="" class="btn btn-secondary"> + Add a new log</a>
+                    <a href="" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="1">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse${log.id}">
