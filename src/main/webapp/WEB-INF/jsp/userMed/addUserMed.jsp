@@ -3,23 +3,23 @@
 <jsp:include page="../include/header.jsp" />
 
 <container class="container py-5 col-6 card shadow-2-strong" style="margin-top: 30px">
-    <form action="userMedSubmit" id="addMedForm">
+    <form action="/userMed/addUserMedSubmit" id="addMedForm">
         <input type="hidden" name="id"  value="${form.id}">
         <h2 style="color:black; margin-left: 0; margin-top: 0;">Add A Med</h2>
         <div class="input-group mb-3" >
             <label class="input-group-text" for="addMedSelect">Med Name</label>
-            <select class="form-select" id="addMedSelect">
+            <select class="form-select" id="addMedSelect" name="medId">
                 <option selected>Choose medication...</option>
                 <!-- Add forEach loop here  -->
                 <c:forEach items="${meds}" var="med">
-                <option value="${med.id}">${med.name}</option>
+                <option value="${med.id}" name="medId">${med.name}</option>
                 </c:forEach>
             </select>
         </div>
 
         <div class="input-group mb-3" >
             <label class="input-group-text" for="frequencySelect">Frequency</label>
-            <select class="form-select" id="frequencySelect" name="frequency">
+            <select class="form-select" id="frequencySelect" name="frequency" >
                 <option selected>Choose dose frequency...</option>
                 <option value="1">Every hour</option>
                 <option value="2">Every 2 hours</option>

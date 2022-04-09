@@ -21,27 +21,27 @@ public class MedicationController {
     private MedicationDAO medicationDao;
 
     // Method to set view on addMedication page
-    @RequestMapping(value = "/medication/addUserMed", method = RequestMethod.GET )
-    public ModelAndView findAll() {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("medication/addUserMed");
-
-
-        AddUserMedFormBean form = new AddUserMedFormBean();
-        response.addObject("form", form);
-
-//        // Creates a new array of all medications
-        List<Medication> meds = new ArrayList<>();
+//    @RequestMapping(value = "/medication/addUserMed", method = RequestMethod.GET )
+//    public ModelAndView findAll() {
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("medication/addUserMed");
 //
-//        // Queries the database for all medications
-        meds = medicationDao.findAll();
 //
-//        // Adds med list to model
-        response.addObject("meds", meds);
-
-        return response;
-
-    }
+//        AddUserMedFormBean form = new AddUserMedFormBean();
+//        response.addObject("form", form);
+//
+////        // Creates a new array of all medications
+//        List<Medication> meds = new ArrayList<>();
+////
+////        // Queries the database for all medications
+//        meds = medicationDao.findAll();
+////
+////        // Adds med list to model
+//        response.addObject("meds", meds);
+//
+//        return response;
+//
+//    }
 
 
 

@@ -14,7 +14,7 @@ public class AddUserMedFormBean {
     private Integer id;
 
     @NotBlank(message = "Medication is required")
-    private Integer medName;
+    private Integer medId;
 
     @NotBlank(message = "Frequency is required")
     private Integer frequency;
