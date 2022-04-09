@@ -1,8 +1,6 @@
 package medtrackercapstone.medtracker.database.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +10,8 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "medications")
 public class Medication {
 
@@ -29,8 +29,8 @@ public class Medication {
     @Column(name = "special_instructions")
     private String specialInstructions;
 
-//    @OneToMany(mappedBy = "medication", fetch = FetchType.EAGER )
-//    private List<UserMed> userMeds = new ArrayList();
+    @OneToMany(mappedBy = "medication", fetch = FetchType.LAZY )
+    private List<UserMed> userMeds = new ArrayList();
 
 
 

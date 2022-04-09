@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @ToString
 @Getter
 @Setter
-public class AddMedFormBean {
+public class AddUserMedFormBean {
 
     private Integer id;
 

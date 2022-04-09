@@ -1,8 +1,6 @@
 package medtrackercapstone.medtracker.database.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +9,8 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "logs")
 
@@ -30,7 +30,12 @@ public class Log {
 
 
     // TODO: Add med foreign key here
-    @Column(name = "med_id")
-    private Integer medId;
+//    @Column(name = "med_id")
+//    private Integer medId;
+
+
+    // TODO: Add user foreign key here
+//    @Column(name = "user_id")
+//    private Integer userId;
 
 }

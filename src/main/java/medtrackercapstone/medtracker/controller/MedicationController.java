@@ -2,14 +2,12 @@ package medtrackercapstone.medtracker.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import medtrackercapstone.medtracker.database.dao.MedicationDAO;
-import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.entity.Medication;
-import medtrackercapstone.medtracker.formbean.AddMedFormBean;
+import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class MedicationController {
         response.setViewName("medication/addUserMed");
 
 
-        AddMedFormBean form = new AddMedFormBean();
+        AddUserMedFormBean form = new AddUserMedFormBean();
         response.addObject("form", form);
 
 //        // Creates a new array of all medications

@@ -11,6 +11,7 @@ import java.util.Date;
 @ToString
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user-meds")
 
 public class UserMed {
@@ -28,24 +29,24 @@ public class UserMed {
 
 
 //     Add foreign key for med_id
-//    @Column(name = "med_id", insertable = false, updatable = false)
-//    private Integer medId;
-//    @ToString.Exclude
-//    @EqualsAndHashCode.Exclude
-//    @ManyToOne( fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn( name = "med_id", nullable = false, updatable = false, insertable = false)
-//    private Medication medication;
+    @Column(name = "med_id", insertable = false, updatable = false)
+    private Integer medId;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne( fetch = FetchType.EAGER, optional = false)
+    @JoinColumn( name = "med_id", nullable = false, updatable = false, insertable = false)
+    private Medication medication;
 
 
 
 //     Add foreign key for user_id
-//    @Column(name = "user_id", insertable = false, updatable = false)
-//    private Integer userId;
-//    @ToString.Exclude
-//    @EqualsAndHashCode.Exclude
-//    @ManyToOne( fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn( name = "user_id", nullable = false, updatable = false, insertable = false)
-//    private User user;
+    @Column(name = "user_id", insertable = false, updatable = false)
+    private Integer userId;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne( fetch = FetchType.EAGER, optional = false)
+    @JoinColumn( name = "user_id", nullable = false, updatable = false, insertable = false)
+    private User user;
 
 
 }

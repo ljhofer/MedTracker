@@ -49,7 +49,7 @@ public class UserController {
     public ModelAndView registerSubmit(@Valid RegisterFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
 
-//        TODO: Decide about desplaying these error or figure out how to use Bootstrap validation
+//        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
 //        if (bindingResult.hasErrors() ) {
 //            for ( ObjectError error : bindingResult.getAllErrors()) {
 //                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );

@@ -3,7 +3,7 @@
 <jsp:include page="../include/header.jsp" />
 
 <container class="container py-5 col-6 card shadow-2-strong" style="margin-top: 30px">
-    <form action="" id="addMedForm">
+    <form action="userMedSubmit" id="addMedForm">
         <input type="hidden" name="id"  value="${form.id}">
         <h2 style="color:black; margin-left: 0; margin-top: 0;">Add A Med</h2>
         <div class="input-group mb-3" >
