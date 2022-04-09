@@ -29,8 +29,8 @@ public class Medication {
     @Column(name = "special_instructions")
     private String specialInstructions;
 
-    @OneToMany(mappedBy = "medication", fetch = FetchType.EAGER )
-    private List<UserMed> userMeds = new ArrayList();
+//    @OneToMany(mappedBy = "medication", fetch = FetchType.EAGER )
+//    private List<UserMed> userMeds = new ArrayList();
 
 
 

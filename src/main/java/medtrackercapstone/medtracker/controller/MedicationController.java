@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import medtrackercapstone.medtracker.database.dao.MedicationDAO;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.entity.Medication;
+import medtrackercapstone.medtracker.formbean.AddMedFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,42 +22,30 @@ public class MedicationController {
     @Autowired
     private MedicationDAO medicationDao;
 
-    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
+    // Method to set view on addMedication page
+    @RequestMapping(value = "/medication/addUserMed", method = RequestMethod.GET )
     public ModelAndView findAll() {
         ModelAndView response = new ModelAndView();
-        response.setViewName("user/userDashboard");
+        response.setViewName("medication/addUserMed");
 
-        // Creates a new array of all medications
+
+        AddMedFormBean form = new AddMedFormBean();
+        response.addObject("form", form);
+
+//        // Creates a new array of all medications
         List<Medication> meds = new ArrayList<>();
-
-        // Queries the database for all medications
+//
+//        // Queries the database for all medications
         meds = medicationDao.findAll();
-
-        // Adds med list to model
+//
+//        // Adds med list to model
         response.addObject("meds", meds);
 
         return response;
 
     }
 
-//    @RequestMapping(value = "/user/dashboard", method = RequestMethod.GET )
-//    public ModelAndView findByName(@RequestParam (required = false) String name) {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/dashboard");
-//
-//        // Creates a new array of all medications
-//        List<Medication> meds = new ArrayList<>();
-//        name = "Aspirin";
-//
-//        // Queries the database for all medications
-//        meds = medicationDao.findByName(name);
-//
-//        // Adds med list to model
-//        response.addObject("meds", meds);
-//
-//        return response;
-//
-//    }
+
 
 
 }

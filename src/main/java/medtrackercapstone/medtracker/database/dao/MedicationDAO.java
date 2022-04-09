@@ -10,7 +10,7 @@ public interface MedicationDAO extends JpaRepository<Medication, Long> {
 
 //    List<Medication> findByName(@Param("name") String name);
 
-//    List<Medication> findAll();
+    List<Medication> findAll();
 
 
 }

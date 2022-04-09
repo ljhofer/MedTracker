@@ -2,17 +2,18 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<container class="container py-5 col-9 card shadow-2-strong" style="margin-top: 30px">
+<container class="container py-5 col-6 card shadow-2-strong" style="margin-top: 30px">
     <form action="" id="addMedForm">
+        <input type="hidden" name="id"  value="${form.id}">
         <h2 style="color:black; margin-left: 0; margin-top: 0;">Add A Med</h2>
         <div class="input-group mb-3" >
-            <label class="input-group-text" for="addMedSelect">New Med</label>
+            <label class="input-group-text" for="addMedSelect">Med Name</label>
             <select class="form-select" id="addMedSelect">
                 <option selected>Choose medication...</option>
                 <!-- Add forEach loop here  -->
-                <option value="1">Med Choice One</option>
-                <option value="2">Med Choice Two</option>
-                <option value="3">Med Choice Three</option>
+                <c:forEach items="${meds}" var="med">
+                <option value="${med.id}">${med.name}</option>
+                </c:forEach>
             </select>
         </div>
 

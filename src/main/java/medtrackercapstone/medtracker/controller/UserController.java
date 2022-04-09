@@ -3,7 +3,9 @@ package medtrackercapstone.medtracker.controller;
 
 import lombok.extern.slf4j.Slf4j;
 //import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.dao.MedicationDAO;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.User;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -24,23 +28,28 @@ public class UserController {
     @Autowired
     private UserDAO userDao;
 
+    @Autowired
+    private MedicationDAO medicationDao;
+
+    // Method to set page view for registration page
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
     public ModelAndView register() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/register");
 
-        // Preseeding the form
+        // Sets the form
         RegisterFormBean form = new RegisterFormBean();
         response.addObject("form", form);
 
         return response;
     }
 
-    // This method now becomes a create and an edit based on if the user id is populated in the registerFormBean
+    // Method to register new user
     @RequestMapping(value = "/user/registerSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView registerSubmit(@Valid RegisterFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
 
+//        TODO: Decide about desplaying these error or figure out how to use Bootstrap validation
 //        if (bindingResult.hasErrors() ) {
 //            for ( ObjectError error : bindingResult.getAllErrors()) {
 //                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
@@ -52,14 +61,12 @@ public class UserController {
 //            return response;
 //        }
 
-        // first try to load the user from the database using the incoming id on the form
+        // Checks to see if user is already in the database
         User user = userDao.findById(form.getId());
 
-        //now if the id from the database is null then it is a create
+        // Create new user if not already in the database and sets values to those in the form
         if ( user == null ) {
-
             user = new User();
-
         }
 
         user.setEmail(form.getEmail());
@@ -70,10 +77,66 @@ public class UserController {
 
         log.info(form.toString());
 
-        // Will send us to the edit page for this user which will be responsible for loading the user from the database and rendering the info
-        // When you use redirect: it tells spring to redirect page, uses an actual URL rather than a view name path
+        // TODO: Decide what to do here and add approppriate commenting
+       // R
         response.setViewName("redirect:/user/userDashboard");
 
         return response;
     }
+
+    // Method to populate meds on userDashboard page
+    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
+    public ModelAndView findAll() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("user/userDashboard");
+
+        // Creates a new array of all medications
+        List<Medication> meds = new ArrayList<>();
+
+        // Queries the database for all medications
+        meds = medicationDao.findAll();
+
+        // Adds med list to model
+        response.addObject("meds", meds);
+
+        return response;
+
+    }
+
+
+    // Method to return medication data based on medication name
+
+//    @RequestMapping(value = "/user/dashboard", method = RequestMethod.GET )
+//    public ModelAndView findByName(@RequestParam (required = false) String name) {
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("user/dashboard");
+//
+//        // Creates a new array of all medications
+//        List<Medication> meds = new ArrayList<>();
+//        name = "Aspirin";
+//
+//        // Queries the database for all medications
+//        meds = medicationDao.findByName(name);
+//
+//        // Adds med list to model
+//        response.addObject("meds", meds);
+//
+//        return response;
+//
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
