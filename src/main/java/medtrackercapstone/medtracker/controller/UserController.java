@@ -62,7 +62,7 @@ public class UserController {
 //        }
 
         // Checks to see if user is already in the database
-        User user = userDao.findById(form.getId());
+        User user = userDao.getById(form.getId());
 
         // Create new user if not already in the database and sets values to those in the form
         if ( user == null ) {

@@ -97,13 +97,11 @@ public class UserMedController {
 
         // TODO make this populate with real user id
 //        userMed.setUserId(1);
-        userMed.setUser(userDao.getById(1L));
+        userMed.setUser(userDao.getById(1));
 
         log.info(userMed.toString());
 
         userMedDao.save(userMed);
-
-        log.info(form.toString());
 
         // TODO: send to individual dashboard page and add proper commenting
         response.setViewName("redirect:/user/userDashboard");

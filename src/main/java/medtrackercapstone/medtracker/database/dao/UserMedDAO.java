@@ -19,7 +19,7 @@ import java.util.List;
 
 
 
-public interface UserMedDAO extends JpaRepository<UserMed, Long> {
+public interface UserMedDAO extends JpaRepository<UserMed, Integer> {
 
 //    UserMed findById(@Param("id") Integer id);
 
