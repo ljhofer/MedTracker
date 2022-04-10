@@ -120,14 +120,6 @@ public class LogController {
 
 
 
-    // Creates a new array of all medications
-//    List<Log> logs = new ArrayList<>();
-
-    // Queries the database for all medications
-//    logs = logDao.findAll();
-
-    // Adds med list to model
-//        response.addObject("logs", logs);
 
 //        return response;
 

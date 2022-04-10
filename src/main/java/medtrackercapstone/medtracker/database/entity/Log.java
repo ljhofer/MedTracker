@@ -25,7 +25,6 @@ public class Log {
     private String sideEffects;
 
     @Column(name = "created_on")
-//    @Temporal(TemporalType.DATE)
     private Date createdOn;
 
     @ToString.Exclude

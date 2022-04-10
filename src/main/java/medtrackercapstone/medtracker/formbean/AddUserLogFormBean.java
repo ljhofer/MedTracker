@@ -17,6 +17,5 @@ public class AddUserLogFormBean {
 
     private String sideEffects;
 
-//    private Timestamp createdOn;
 
 }

@@ -3,8 +3,10 @@ package medtrackercapstone.medtracker.controller;
 
 import lombok.extern.slf4j.Slf4j;
 //import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.dao.LogDAO;
 import medtrackercapstone.medtracker.database.dao.MedicationDAO;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.entity.Log;
 import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.User;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     private MedicationDAO medicationDao;
+
+    @Autowired
+    private LogDAO logDao;
 
     // Method to set page view for registration page
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
@@ -90,14 +95,18 @@ public class UserController {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/userDashboard");
 
-        // Creates a new array of all medications
+        // Creates a new array of all medications and logs
         List<Medication> meds = new ArrayList<>();
+        List<Log> logs = new ArrayList<>();
 
-        // Queries the database for all medications
+        // TODO: Change to logs and meds for this user
+        // Queries the database for all medications and logs
         meds = medicationDao.findAll();
+        logs = logDao.findAll();
 
         // Adds med list to model
         response.addObject("meds", meds);
+        response.addObject("logs", logs);
 
         return response;
 
