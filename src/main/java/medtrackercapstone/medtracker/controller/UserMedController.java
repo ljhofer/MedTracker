@@ -7,6 +7,7 @@ import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@Controller
 public class UserMedController {
 
     @Autowired
@@ -57,7 +59,6 @@ public class UserMedController {
     public ModelAndView addUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
 
-        log.info("made it");
         log.info(form.toString());
 
 
@@ -79,20 +80,21 @@ public class UserMedController {
 //            return response;
 //        }
 
-        // Checks to see if userMed is already in the database
-        UserMed userMed = userMedDao.findById(form.getId());
+        // Creates new userMed record and sets values equal to those in the form
+        UserMed userMed = new UserMed();
+//
 
-        // Creates new userMed record if not already in database and sets values equal to those in the form
-        if ( form.getId() == null ) {
-            userMed = new UserMed();
-        }
-
-        userMed.setId(form.getId());
+//        userMed.setId(form.getId());
         userMed.setFrequency(form.getFrequency());
         userMed.setDosage(form.getDosage());
-        userMed.setMedId(form.getMedId());
+
+//        userMed.setMedication(medicationDao.findById(form.getMedId()));
+        userMed.setMedication(medicationDao.getById(form.getMedId()));
+
         // TODO make this populate with real user id
         userMed.setUserId(1);
+
+        log.info(userMed.toString());
 
         userMedDao.save(userMed);
 

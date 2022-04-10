@@ -9,9 +9,9 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "user-meds")
 
 public class UserMed {
@@ -33,7 +33,7 @@ public class UserMed {
     private Integer medId;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne( fetch = FetchType.EAGER, optional = false)
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
     @JoinColumn( name = "med_id", nullable = false, updatable = false, insertable = false)
     private Medication medication;
 
@@ -44,7 +44,7 @@ public class UserMed {
     private Integer userId;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne( fetch = FetchType.EAGER, optional = false)
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
     @JoinColumn( name = "user_id", nullable = false, updatable = false, insertable = false)
     private User user;
 
