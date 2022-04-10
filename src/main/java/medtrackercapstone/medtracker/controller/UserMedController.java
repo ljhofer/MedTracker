@@ -2,6 +2,7 @@ package medtrackercapstone.medtracker.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import medtrackercapstone.medtracker.database.dao.MedicationDAO;
+import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.dao.UserMedDAO;
 import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.UserMed;
@@ -28,6 +29,9 @@ public class UserMedController {
 
     @Autowired
     private MedicationDAO medicationDao;
+
+    @Autowired
+    private UserDAO userDao;
 
 
     // Method to set view on addMedication page
@@ -92,7 +96,8 @@ public class UserMedController {
         userMed.setMedication(medicationDao.getById(form.getMedId()));
 
         // TODO make this populate with real user id
-        userMed.setUserId(1);
+//        userMed.setUserId(1);
+        userMed.setUser(userDao.getById(1L));
 
         log.info(userMed.toString());
 
