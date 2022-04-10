@@ -87,11 +87,8 @@ public class UserMedController {
         // Creates new userMed record and sets values equal to those in the form
         UserMed userMed = new UserMed();
 //
-
-//        userMed.setId(form.getId());
         userMed.setFrequency(form.getFrequency());
         userMed.setDosage(form.getDosage());
-
 //        userMed.setMedication(medicationDao.findById(form.getMedId()));
         userMed.setMedication(medicationDao.getById(form.getMedId()));
 

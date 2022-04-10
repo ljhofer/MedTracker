@@ -4,7 +4,6 @@ package medtrackercapstone.medtracker.database.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -12,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user-meds")
+@Table(name = "user_meds")
 
 public class UserMed {
 
@@ -34,18 +33,16 @@ public class UserMed {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)
-    @JoinColumn( name = "med_id", nullable = false, updatable = false, insertable = false)
+    @JoinColumn( name = "med_id", nullable = false)
     private Medication medication;
 
 
 
 //     Add foreign key for user_id
-//    @Column(name = "user_id", insertable = false, updatable = false)
-//    private Integer userId;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)
-    @JoinColumn( name = "user_id", nullable = false, updatable = false, insertable = false)
+    @JoinColumn( name = "user_id", nullable = false)
     private User user;
 
 
