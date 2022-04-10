@@ -28,8 +28,6 @@ public class UserMed {
 
 
 //     Add foreign key for med_id
-//    @Column(name = "med_id", insertable = false, updatable = false)
-//    private Integer medId;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)

@@ -89,11 +89,9 @@ public class UserMedController {
 //
         userMed.setFrequency(form.getFrequency());
         userMed.setDosage(form.getDosage());
-//        userMed.setMedication(medicationDao.findById(form.getMedId()));
         userMed.setMedication(medicationDao.getById(form.getMedId()));
 
         // TODO make this populate with real user id
-//        userMed.setUserId(1);
         userMed.setUser(userDao.getById(1));
 
         log.info(userMed.toString());
