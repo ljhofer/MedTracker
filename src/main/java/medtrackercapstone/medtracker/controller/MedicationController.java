@@ -36,13 +36,10 @@ public class MedicationController {
 
     }
 
-
+    // Method to add a medication record based on the information populated in the addMedication form
     @RequestMapping(value = "/medication/addMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView addMedSubmit(@Valid AddMedicationFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
-
-        log.info(form.toString());
-
 
 //        if (bindingResult.hasErrors() ) {
 //
@@ -68,8 +65,6 @@ public class MedicationController {
         medication.setName(form.getName());
         medication.setMedPurpose(form.getMedPurpose());
         medication.setSpecialInstructions(form.getSpecialInstructions());
-
-        log.info(medication.toString());
 
         medicationDao.save(medication);
 

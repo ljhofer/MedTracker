@@ -57,7 +57,7 @@ public class UserMedController {
     }
 
 
-    // Method to add a UserMed record based on the information populated in the addUserMedFormBean
+    // Method to add a UserMed record based on the information populated in the addUserMed form
     @RequestMapping(value = "/userMed/addUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView addUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();

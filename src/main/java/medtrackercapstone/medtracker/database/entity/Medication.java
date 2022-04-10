@@ -32,6 +32,7 @@ public class Medication {
     @OneToMany(mappedBy = "medication", fetch = FetchType.LAZY )
     private List<UserMed> userMeds = new ArrayList();
 
-
+    @OneToMany(mappedBy = "medication", fetch = FetchType.LAZY)
+    private List<Log> logs;
 
 }

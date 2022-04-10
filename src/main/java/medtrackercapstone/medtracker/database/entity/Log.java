@@ -28,14 +28,14 @@ public class Log {
     @Temporal(TemporalType.DATE)
     private Date createDate;
 
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "med_id", nullable = false)
+    private Medication medication;
 
-    // TODO: Add med foreign key here
-//    @Column(name = "med_id")
-//    private Integer medId;
-
-
-    // TODO: Add user foreign key here
-//    @Column(name = "user_id")
-//    private Integer userId;
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 }
