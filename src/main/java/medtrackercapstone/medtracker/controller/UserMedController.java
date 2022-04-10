@@ -34,12 +34,11 @@ public class UserMedController {
     private UserDAO userDao;
 
 
-    // Method to set view on addMedication page
+    // Method to set view on addUserMed page
     @RequestMapping(value = "/userMed/addUserMed", method = RequestMethod.GET )
     public ModelAndView addUserMed() {
         ModelAndView response = new ModelAndView();
         response.setViewName("userMed/addUserMed");
-
 
         AddUserMedFormBean form = new AddUserMedFormBean();
         response.addObject("form", form);
@@ -62,9 +61,6 @@ public class UserMedController {
     @RequestMapping(value = "/userMed/addUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView addUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
-
-        log.info(form.toString());
-
 
 //        if (bindingResult.hasErrors() ) {
 //
@@ -93,8 +89,6 @@ public class UserMedController {
 
         // TODO make this populate with real user id
         userMed.setUser(userDao.getById(1));
-
-        log.info(userMed.toString());
 
         userMedDao.save(userMed);
 
