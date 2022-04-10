@@ -24,9 +24,9 @@ public class Log {
     @Column(name = "side_effects")
     private String sideEffects;
 
-    @Column(name = "timestamp")
-    @Temporal(TemporalType.DATE)
-    private Date createDate;
+    @Column(name = "created_on")
+//    @Temporal(TemporalType.DATE)
+    private Date createdOn;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -31,6 +35,16 @@ public class LogController {
 
     @Autowired
     private UserDAO userDao;
+
+//    private final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//
+//    private Timestamp parseTimestamp(String timestamp) {
+//        try {
+//            return new Timestamp(DATE_TIME_FORMAT.parse(timestamp).getTime());
+//        } catch (ParseException e) {
+//            throw new IllegalArgumentException(e);
+//        }
+//    }
 
     // Method to set view on addUserLog page
     @RequestMapping(value = "/log/addUserLog", method = RequestMethod.GET )
@@ -81,23 +95,21 @@ public class LogController {
 //        }
 
         // Creates new userMed record and sets values equal to those in the form
-        Log userlog = new Log();
+        Log userLog = new Log();
 
-//        log.setMedication(medicationDao.getById(form.getMedId()));
-////
-//        userMed.setFrequency(form.getFrequency());
-//        userMed.setDosage(form.getDosage());
-//
-//
+        userLog.setMedication(medicationDao.getById(form.getMedId()));
+        userLog.setSideEffects(form.getSideEffects());
+        userLog.setCreatedOn(new Date());
+
 //        // TODO make this populate with real user id
-//        userMed.setUser(userDao.getById(1));
-//
-//        log.info(userMed.toString());
-//
-//        userMedDao.save(userMed);
-//
+        userLog.setUser(userDao.getById(1));
+
+        log.info(userLog.toString());
+
+        logDao.save(userLog);
+
 //        // TODO: send to individual dashboard page and add proper commenting
-//        response.setViewName("redirect:/user/userDashboard");
+        response.setViewName("redirect:/user/userDashboard");
 
         return response;
     }
