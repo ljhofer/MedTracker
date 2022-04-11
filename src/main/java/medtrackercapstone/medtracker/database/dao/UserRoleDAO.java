@@ -1,7 +1,6 @@
 package medtrackercapstone.medtracker.database.dao;
 
-
-import medtrackercapstone.medtracker.database.entity.User;
+import medtrackercapstone.medtracker.database.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -9,11 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserDAO extends JpaRepository<User, Integer>  {
+public interface UserRoleDAO extends JpaRepository<UserRole, Long> {
 
-//    User findById(@Param("id") Integer id);
-
-    User findByEmail(@Param("email") String email);
-
+    List<UserRole> findByUserId(@Param("userId") Integer userId);
 
 }

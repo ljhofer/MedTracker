@@ -10,7 +10,7 @@
             <label class="input-group-text" for="addMedSelect">Med Name</label>
             <select class="form-select" id="addMedSelect" name="medId">
                 <option selected>Choose medication...</option>
-                <!-- Add forEach loop here  -->
+                <!-- Iterates over each med to populate the dropdown  -->
                 <c:forEach items="${meds}" var="med">
                 <option value="${med.id}" name="medId">${med.name}</option>
                 </c:forEach>
