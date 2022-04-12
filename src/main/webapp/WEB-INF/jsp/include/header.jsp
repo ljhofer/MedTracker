@@ -33,16 +33,16 @@
                 <ul class="navbar-nav">
                     <sec:authorize access="!isAuthenticated()">
                         <li class="nav-item">
-                            <a class="nav-link" href="login.html">Log In</a>
+                            <a class="nav-link" href="/login/login">Log In</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register.html">Sign Up</a>
+                            <a class="nav-link" href="/user/register">Sign Up</a>
                         </li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.html">Dashboard</a>
-                        </li>
+<%--                        <li class="nav-item">--%>
+<%--                            <a class="nav-link" href="user/userDashboard">Dashboard</a>--%>
+<%--                        </li>--%>
                         <li class="nav-item">
                             <a class="nav-link" href="/login/logout">Log Out</a>
                         </li>

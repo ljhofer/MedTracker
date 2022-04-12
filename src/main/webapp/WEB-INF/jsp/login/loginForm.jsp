@@ -39,25 +39,6 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12 mb-4">
-                                        <h6 class="mb-2 pb-1">User Type: </h6>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="admin" value="option1"
-                                            />
-                                            <label class="form-check-label" for="admin">Admin</label>
-                                        </div>
-
-<%--                                        <div class="form-check form-check-inline">--%>
-<%--                                            <input--%>
-<%--                                                    class="form-check-input" type="radio" name="inlineRadioOptions"--%>
-<%--                                                    id="user" value="option2" checked />--%>
-<%--                                            <label class="form-check-label" for="user">User</label>--%>
-<%--                                        </div>--%>
-<%--                                        <div class="form-check form-check-inline">--%>
-<%--                                        </div>--%>
-                                    </div>
-
                                     <div class="col-md-3 mt-4 pt-2">
                                         <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
                                     </div>
