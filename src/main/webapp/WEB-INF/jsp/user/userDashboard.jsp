@@ -11,6 +11,7 @@
                     <a href="contact_us.html" class="btn btn-secondary userDashboardButton"> + Add New Med</a>
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item">
+                            // TODO: Make this userMed id probably
                             <h2 class="accordion-header" id="${med.id}">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${med.id}" aria-expanded="true" aria-controls="collapse${med.id}">
                                     ${med.name}

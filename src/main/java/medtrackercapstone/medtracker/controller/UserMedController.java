@@ -7,6 +7,7 @@ import medtrackercapstone.medtracker.database.dao.UserMedDAO;
 import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
+import medtrackercapstone.medtracker.formbean.UpdateUserMedFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -99,7 +100,32 @@ public class UserMedController {
     }
 
 
+    // Method to set view on updateUserMed page
+    // Add a param here to get UserMed by Id from the previous page
+    @RequestMapping(value = "/userMed/updateUserMed", method = RequestMethod.GET )
+    public ModelAndView updateUserMed() {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("userMed/updateUserMed");
 
+        UpdateUserMedFormBean form = new UpdateUserMedFormBean();
+        response.addObject("form", form);
+
+//        // Creates a new array of all medications
+//        List<UserMed> meds = new ArrayList<>();
+        UserMed userMed = new UserMed();
+//
+//        // Queries the database for all medications
+        // TODO: Make this grab the actual UserMed id and not hard coding it
+        userMed = userMedDao.getById(4);
+
+        log.info(userMed.toString());
+//
+//        // Adds med list to model
+        response.addObject("userMed", userMed);
+
+        return response;
+
+    }
 
 
 
