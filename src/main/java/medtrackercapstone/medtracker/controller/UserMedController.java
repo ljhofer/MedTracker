@@ -101,7 +101,7 @@ public class UserMedController {
 
 
     // Method to set view on updateUserMed page
-    // Add a param here to get UserMed by Id from the previous page
+    // TODO: Add a param here to get UserMed by Id from the previous page
     @RequestMapping(value = "/userMed/updateUserMed", method = RequestMethod.GET )
     public ModelAndView updateUserMed() {
         ModelAndView response = new ModelAndView();
@@ -117,8 +117,6 @@ public class UserMedController {
 //        // Queries the database for all medications
         // TODO: Make this grab the actual UserMed id and not hard coding it
         userMed = userMedDao.getById(4);
-
-        log.info(userMed.toString());
 //
 //        // Adds med list to model
         response.addObject("userMed", userMed);

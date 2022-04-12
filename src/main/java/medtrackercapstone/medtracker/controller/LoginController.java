@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
 @Controller
-
 public class LoginController {
 
     @RequestMapping(value= "/login/login", method = RequestMethod.GET)

@@ -8,10 +8,11 @@
             <div class="col-6">
                 <div class="accordion" id="medicationAccordion">
                     <h1 class="userDashboardHeader">My Medications</h1>
+                    <%--                    TODO: Add in href here--%>
                     <a href="contact_us.html" class="btn btn-secondary userDashboardButton"> + Add New Med</a>
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item">
-                            // TODO: Make this userMed id probably
+<%--                            TODO: Make this userMed id probably--%>
                             <h2 class="accordion-header" id="${med.id}">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${med.id}" aria-expanded="true" aria-controls="collapse${med.id}">
                                     ${med.name}
@@ -33,6 +34,7 @@
             <div class="col-6">
                 <div class="accordion" id="logAccordion">
                     <h1 class="userDashboardHeader">My Logs</h1>
+<%--                    TODO: Add in href here--%>
                     <a href="" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
                     <c:forEach items="${logs}" var="log">
                     <div class="accordion-item" >

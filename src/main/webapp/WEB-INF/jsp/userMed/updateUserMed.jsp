@@ -10,16 +10,6 @@
             <span class="input-group-text" id="medToUpdate">Medication Name</span>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly name="" value="${userMed.medication.name}" readonly>
         </div>
-<%--        <div class="input-group mb-3" >--%>
-<%--            <label class="input-group-text" for="addMedSelect">Med Name</label>--%>
-<%--            <select class="form-select" id="addMedSelect" name="medId">--%>
-<%--                <option selected>Choose medication...</option>--%>
-<%--                <!-- Iterates over each med to populate the dropdown  -->--%>
-<%--                <c:forEach items="${meds}" var="med">--%>
-<%--                    <option value="${med.id}" name="medId">${med.name}</option>--%>
-<%--                </c:forEach>--%>
-<%--            </select>--%>
-<%--        </div>--%>
 
         <div class="input-group mb-3" >
             <label class="input-group-text" for="frequencySelect">Frequency</label>
@@ -41,8 +31,14 @@
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" value="Enter medication amount for each dose">
         </div>
 
+<%--        Button for submitting userMed changes--%>
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
+            <input class="btn btn-secondary btn-md" type="submit" value="Update Med" />
+        </div>
+
+<%--        Button for deleting userMed--%>
+        <div class="col-md-3 mt-4 pt-2">
+            <input class="btn btn-secondary btn-md" type="submit" value="Delete Med" />
         </div>
 
     </form>
