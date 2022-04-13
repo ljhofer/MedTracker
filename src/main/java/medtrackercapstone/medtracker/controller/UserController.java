@@ -111,7 +111,6 @@ public class UserController {
         response.setViewName("user/userDashboard");
 
         // Creates a new array of all medications and logs
-//        User user = userDao.findById(userId);
         List<UserMed> meds = new ArrayList<>();
         List<Log> logs = new ArrayList<>();
 
@@ -151,20 +150,7 @@ public class UserController {
 //    }
 
 
-    // Code for getting userId
-//    @GetMapping("/user/{userId}/home")
-//    public ModelAndView userHome(@PathVariable("userId") Integer userId) throws Exception {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/home");
-//
-//        User user = userDAO.findById(userId);
-//        List<Pet> petList = userDAO.getById(userId);
-//
-//        response.addObject("user", user);
-//        response.addObject("petList", petList);
-//
-//        return response;
-//    }
+    
 
     // Method to populate meds on userDashboard page
 //    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
