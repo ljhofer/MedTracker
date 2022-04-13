@@ -30,9 +30,8 @@ public class IndexController {
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
             response.addObject(user);
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
         }
-
-        response.setViewName("index");
 
         return response;
 

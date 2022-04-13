@@ -95,21 +95,28 @@ public class LogController {
 //        }
 
         // Creates new userMed record and sets values equal to those in the form
-        Log userLog = new Log();
 
-        userLog.setMedication(medicationDao.getById(form.getMedId()));
-        userLog.setSideEffects(form.getSideEffects());
-        userLog.setCreatedOn(new Date());
 
-        // TODO make this populate with real user id
-        userLog.setUser(userDao.getById(1));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
-        log.info(userLog.toString());
+        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+            User user = userDao.findByEmail(currentPrincipalName);
 
-        logDao.save(userLog);
+            Log userLog = new Log();
 
-        // TODO: send to individual dashboard page and add proper commenting
-        response.setViewName("redirect:/user/userDashboard");
+            userLog.setMedication(medicationDao.getById(form.getMedId()));
+            userLog.setSideEffects(form.getSideEffects());
+            userLog.setCreatedOn(new Date());
+
+            userLog.setUser(user);
+
+            logDao.save(userLog);
+
+            // Redirects user to their dashboard page
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
+
+        }
 
         return response;
     }
