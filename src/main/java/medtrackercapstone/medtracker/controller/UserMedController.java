@@ -5,10 +5,14 @@ import medtrackercapstone.medtracker.database.dao.MedicationDAO;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.dao.UserMedDAO;
 import medtrackercapstone.medtracker.database.entity.Medication;
+import medtrackercapstone.medtracker.database.entity.User;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import medtrackercapstone.medtracker.formbean.UpdateUserMedFormBean;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -44,14 +48,16 @@ public class UserMedController {
         AddUserMedFormBean form = new AddUserMedFormBean();
         response.addObject("form", form);
 
-//        // Creates a new array of all medications
-        List<Medication> meds = new ArrayList<>();
-//
-//        // Queries the database for all medications
-        meds = medicationDao.findAll();
-//
-//        // Adds med list to model
-        response.addObject("meds", meds);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        // If user is known then a new array of meds is created and added to the model
+        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+            User user = userDao.findByEmail(currentPrincipalName);
+            // TODO: get meds for just this user
+            List<Medication> meds = medicationDao.findAll();
+            response.addObject("meds", meds);
+        }
 
         return response;
 
@@ -63,38 +69,27 @@ public class UserMedController {
     public ModelAndView addUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
 
-//        if (bindingResult.hasErrors() ) {
-//
-//            List<String> errorMessages = new ArrayList<>();
-//            for ( ObjectError error : bindingResult.getAllErrors()) {
-//                errorMessages.add(error.getDefaultMessage());
-//                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
-//            }
-//
-//            response.addObject("form", form);
-//
-//            response.addObject("bindingResult", bindingResult);
-//
-//            // because there is one or more error we do not want to process the logic below
-//            // that will creat a new user in the database we want to show the same model that we are already on
-//            response.setViewName("/medication/userMedSubmit");
-//            return response;
-//        }
 
-        // Creates new userMed record and sets values equal to those in the form
-        UserMed userMed = new UserMed();
-//
-        userMed.setFrequency(form.getFrequency());
-        userMed.setDosage(form.getDosage());
-        userMed.setMedication(medicationDao.getById(form.getMedId()));
+        // If user is known creates new userMed record and sets values equal to those in the form
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
-        // TODO make this populate with real user id
-        userMed.setUser(userDao.getById(1));
+        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+            User user = userDao.findByEmail(currentPrincipalName);
 
-        userMedDao.save(userMed);
+            UserMed userMed = new UserMed();
 
-        // TODO: send to individual dashboard page and add proper commenting
-        response.setViewName("redirect:/user/userDashboard");
+            userMed.setFrequency(form.getFrequency());
+            userMed.setDosage(form.getDosage());
+            userMed.setMedication(medicationDao.getById(form.getMedId()));
+
+            userMed.setUser(user);
+
+            userMedDao.save(userMed);
+
+            // Redirects user to their dashboard page
+            response.setViewName("redirect:/user/userDashboard" + user.getId());
+        }
 
         return response;
     }
