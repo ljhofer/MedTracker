@@ -54,7 +54,6 @@ public class UserMedController {
         // If user is known then a new array of meds is created and added to the model
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
-            // TODO: get meds for just this user
             List<Medication> meds = medicationDao.findAll();
             response.addObject("meds", meds);
         }
@@ -88,7 +87,7 @@ public class UserMedController {
             userMedDao.save(userMed);
 
             // Redirects user to their dashboard page
-            response.setViewName("redirect:/user/userDashboard" + user.getId());
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
         }
 
         return response;

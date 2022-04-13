@@ -4,12 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import medtrackercapstone.medtracker.database.dao.LogDAO;
 import medtrackercapstone.medtracker.database.dao.MedicationDAO;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.dao.UserMedDAO;
 import medtrackercapstone.medtracker.database.entity.Log;
 import medtrackercapstone.medtracker.database.entity.Medication;
+import medtrackercapstone.medtracker.database.entity.User;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserLogFormBean;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,15 +41,9 @@ public class LogController {
     @Autowired
     private UserDAO userDao;
 
-//    private final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//
-//    private Timestamp parseTimestamp(String timestamp) {
-//        try {
-//            return new Timestamp(DATE_TIME_FORMAT.parse(timestamp).getTime());
-//        } catch (ParseException e) {
-//            throw new IllegalArgumentException(e);
-//        }
-//    }
+    @Autowired
+    private UserMedDAO userMedDao;
+
 
     // Method to set view on addUserLog page
     @RequestMapping(value = "/log/addUserLog", method = RequestMethod.GET )
@@ -55,15 +54,16 @@ public class LogController {
         AddUserLogFormBean form = new AddUserLogFormBean();
         response.addObject("form", form);
 
-        // Creates a new array of all medications
-        List<Medication> meds = new ArrayList<>();
 
-        // Queries the database for all medications
-        // TODO: Later change this to the meds for that user
-        meds = medicationDao.findAll();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
-        // Adds med list to model
-        response.addObject("meds", meds);
+        // If user is known then a new array of current user's meds is created and added to the form
+        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+            User user = userDao.findByEmail(currentPrincipalName);
+            List<UserMed> meds = userMedDao.findByUserId(user.getId());
+            response.addObject("meds", meds);
+        }
 
         return response;
 
@@ -101,26 +101,18 @@ public class LogController {
         userLog.setSideEffects(form.getSideEffects());
         userLog.setCreatedOn(new Date());
 
-//        // TODO make this populate with real user id
+        // TODO make this populate with real user id
         userLog.setUser(userDao.getById(1));
 
         log.info(userLog.toString());
 
         logDao.save(userLog);
 
-//        // TODO: send to individual dashboard page and add proper commenting
+        // TODO: send to individual dashboard page and add proper commenting
         response.setViewName("redirect:/user/userDashboard");
 
         return response;
     }
 
-
-
-
-
-
-
-
-//        return response;
 
 }

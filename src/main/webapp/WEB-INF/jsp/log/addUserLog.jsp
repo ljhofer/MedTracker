@@ -10,7 +10,7 @@
                 <select class="form-select" name="medId" id="inputGroupSelect01">
                     <option selected>Choose medication...</option>
                     <c:forEach items="${meds}" var="med">
-                    <option value="${med.id}" name="medId">${med.name}</option>
+                    <option value="${med.medication.id}" name="medId">${med.medication.name}</option>
                     </c:forEach>
                 </select>
             </div>

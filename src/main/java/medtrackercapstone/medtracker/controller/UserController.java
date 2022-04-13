@@ -128,7 +128,7 @@ public class UserController {
     }
 
 
-    // Method to return medication data based on medication name
+    // Method to return medication data based on medication name -- goldplating for admin role
 
 //    @RequestMapping(value = "/user/dashboard", method = RequestMethod.GET )
 //    public ModelAndView findByName(@RequestParam (required = false) String name) {
@@ -150,28 +150,7 @@ public class UserController {
 //    }
 
 
-    
 
-    // Method to populate meds on userDashboard page
-//    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
-//    public ModelAndView findAll() {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/userDashboard");
-//
-//        // Creates a new array of all medications and logs
-//        List<Medication> meds = new ArrayList<>();
-//        List<Log> logs = new ArrayList<>();
-//
-//        // TODO: Change to logs and meds for this user
-//        // Queries the database for all medications and logs
-//        meds = medicationDao.findAll();
-//        logs = logDao.findAll();
-//
-//        // Adds med list to model
-//        response.addObject("meds", meds);
-//        response.addObject("logs", logs);
-//
-//        return response;
 
     }
 
