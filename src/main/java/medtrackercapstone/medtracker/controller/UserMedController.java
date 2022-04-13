@@ -96,7 +96,7 @@ public class UserMedController {
 
     // Method to set view on updateUserMed page
     // TODO: Add a param here to get UserMed by Id from the previous page
-    @RequestMapping(value = "/userMed/updateUserMed", method = RequestMethod.GET )
+    @RequestMapping(value = "/userMed/updateUserMed", method = {RequestMethod.GET, RequestMethod.POST} )
     public ModelAndView updateUserMed() {
         ModelAndView response = new ModelAndView();
         response.setViewName("userMed/updateUserMed");

@@ -23,6 +23,7 @@ public class IndexController {
     @RequestMapping(value= "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView response = new ModelAndView();
+        response.setViewName("index");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
