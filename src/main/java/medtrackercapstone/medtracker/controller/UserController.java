@@ -6,9 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import medtrackercapstone.medtracker.database.dao.LogDAO;
 import medtrackercapstone.medtracker.database.dao.MedicationDAO;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
+import medtrackercapstone.medtracker.database.dao.UserRoleDAO;
 import medtrackercapstone.medtracker.database.entity.Log;
 import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.User;
+import medtrackercapstone.medtracker.database.entity.UserRole;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,9 @@ public class UserController {
 
     @Autowired
     private LogDAO logDao;
+
+    @Autowired
+    private UserRoleDAO userRoleDao;
 
     // Method to set page view for registration page
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
@@ -67,7 +72,7 @@ public class UserController {
 //        }
 
         // Checks to see if user is already in the database
-        User user = userDao.getById(form.getId());
+        User user = userDao.findByEmail(form.getEmail());
 
         // Create new user if not already in the database and sets values to those in the form
         if ( user == null ) {
@@ -79,6 +84,13 @@ public class UserController {
         user.setPassword(form.getPassword());
 
         userDao.save(user);
+
+        UserRole userRole = new UserRole();
+        userRole.setUserId(user.getId());
+        userRole.setUserRole("USER");
+
+        userRoleDao.save(userRole);
+
 
         log.info(form.toString());
 
@@ -135,7 +147,20 @@ public class UserController {
 //    }
 
 
-
+    // Code for getting userId
+//    @GetMapping("/user/{userId}/home")
+//    public ModelAndView userHome(@PathVariable("userId") Integer userId) throws Exception {
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("user/home");
+//
+//        User user = userDAO.findById(userId);
+//        List<Pet> petList = userDAO.getById(userId);
+//
+//        response.addObject("user", user);
+//        response.addObject("petList", petList);
+//
+//        return response;
+//    }
 
 
 

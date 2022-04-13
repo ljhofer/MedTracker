@@ -48,7 +48,7 @@
                         </li>
                     </sec:authorize>
                 </ul>
-                <h3>${user}</h3>
+
             </div>
         </div>
     </nav>

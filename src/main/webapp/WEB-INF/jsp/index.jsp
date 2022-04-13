@@ -2,6 +2,7 @@
 
 <h1 id="title">MedTracker</h1>
 <h2 id="sub-title">Easing the pain of medication management.</h2>
+<h3>${user}</h3>
 
 <!-- Login form -->
 <%--<section class="vh-100 gradient-custom">--%>
