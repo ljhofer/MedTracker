@@ -3,20 +3,16 @@ package medtrackercapstone.medtracker.controller;
 
 import lombok.extern.slf4j.Slf4j;
 //import medtrackercapstone.medtracker.database.dao.UserDAO;
-import medtrackercapstone.medtracker.database.dao.LogDAO;
-import medtrackercapstone.medtracker.database.dao.MedicationDAO;
-import medtrackercapstone.medtracker.database.dao.UserDAO;
-import medtrackercapstone.medtracker.database.dao.UserRoleDAO;
-import medtrackercapstone.medtracker.database.entity.Log;
-import medtrackercapstone.medtracker.database.entity.Medication;
-import medtrackercapstone.medtracker.database.entity.User;
-import medtrackercapstone.medtracker.database.entity.UserRole;
+import medtrackercapstone.medtracker.database.dao.*;
+import medtrackercapstone.medtracker.database.entity.*;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +36,14 @@ public class UserController {
 
     @Autowired
     private UserRoleDAO userRoleDao;
+
+    @Autowired
+    private UserMedDAO userMedDao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
 
     // Method to set page view for registration page
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
@@ -79,9 +83,10 @@ public class UserController {
             user = new User();
         }
 
+        String password = passwordEncoder.encode(form.getPassword());
+        user.setPassword(password);
         user.setEmail(form.getEmail());
         user.setName(form.getName());
-        user.setPassword(form.getPassword());
 
         userDao.save(user);
 
@@ -91,30 +96,29 @@ public class UserController {
 
         userRoleDao.save(userRole);
 
-
         log.info(form.toString());
 
         // TODO: Decide what to do here and add approppriate commenting
-       // R
-        response.setViewName("redirect:/user/userDashboard");
+        response.setViewName("redirect:/user/userDashboard/" + user.getId());
 
         return response;
     }
 
     // Method to populate meds on userDashboard page
-    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
-    public ModelAndView findAll() {
+    @RequestMapping(value = "/user/userDashboard/{userId}", method = RequestMethod.GET )
+    public ModelAndView setUserDashboard(@PathVariable("userId") Integer userId) {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/userDashboard");
 
         // Creates a new array of all medications and logs
-        List<Medication> meds = new ArrayList<>();
+//        User user = userDao.findById(userId);
+        List<UserMed> meds = new ArrayList<>();
         List<Log> logs = new ArrayList<>();
 
         // TODO: Change to logs and meds for this user
         // Queries the database for all medications and logs
-        meds = medicationDao.findAll();
-        logs = logDao.findAll();
+        meds = userMedDao.findByUserId(userId);
+        logs = logDao.findByUserId(userId);
 
         // Adds med list to model
         response.addObject("meds", meds);
@@ -162,15 +166,27 @@ public class UserController {
 //        return response;
 //    }
 
+    // Method to populate meds on userDashboard page
+//    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
+//    public ModelAndView findAll() {
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("user/userDashboard");
+//
+//        // Creates a new array of all medications and logs
+//        List<Medication> meds = new ArrayList<>();
+//        List<Log> logs = new ArrayList<>();
+//
+//        // TODO: Change to logs and meds for this user
+//        // Queries the database for all medications and logs
+//        meds = medicationDao.findAll();
+//        logs = logDao.findAll();
+//
+//        // Adds med list to model
+//        response.addObject("meds", meds);
+//        response.addObject("logs", logs);
+//
+//        return response;
+
+    }
 
 
-
-
-
-
-
-
-
-
-
-}

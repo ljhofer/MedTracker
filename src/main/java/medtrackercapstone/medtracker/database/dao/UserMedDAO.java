@@ -23,4 +23,6 @@ public interface UserMedDAO extends JpaRepository<UserMed, Integer> {
 
 //    UserMed findById(@Param("id") Integer id);
 
+    List<UserMed> findByUserId (@Param("userId") Integer userId);
+
 }
