@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="../include/header.jsp" />
 
@@ -41,7 +42,7 @@
                     <div class="accordion-item" >
                         <h2 class="accordion-header" id="${log.id}">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseid${log.id}" aria-expanded="true" aria-controls="collapse${log.id}">
-                                ${log.createdOn}
+                                <strong><fmt:formatDate value="${log.createdOn}" pattern="MM/dd/yy HH:mm" /></strong>
                             </button>
                         </h2>
                         <div id="collapseid${log.id}" class="accordion-collapse collapse show" aria-labelledby="heading${log.id}" data-bs-parent="#logAccordion">
