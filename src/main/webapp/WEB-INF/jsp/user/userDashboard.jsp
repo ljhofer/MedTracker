@@ -9,7 +9,7 @@
                 <div class="accordion" id="medicationAccordion">
                     <h1 class="userDashboardHeader">My Medications</h1>
                     <%--                    TODO: Add in href here--%>
-                    <a href="contact_us.html" class="btn btn-secondary userDashboardButton"> + Add New Med</a>
+                    <a href="/userMed/addUserMed" class="btn btn-secondary userDashboardButton"> + Add New Med</a>
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item">
 <%--                            TODO: Make this userMed id probably--%>
@@ -36,8 +36,7 @@
             <div class="col-6">
                 <div class="accordion" id="logAccordion">
                     <h1 class="userDashboardHeader">My Logs</h1>
-<%--                    TODO: Add in href here--%>
-                    <a href="" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
+                    <a href="/log/addUserLog" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
                     <c:forEach items="${logs}" var="log">
                     <div class="accordion-item" >
                         <h2 class="accordion-header" id="${log.id}">
