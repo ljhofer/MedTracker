@@ -5,8 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 //import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.dao.*;
 import medtrackercapstone.medtracker.database.entity.*;
+import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -103,6 +107,25 @@ public class UserController {
 
         return response;
     }
+
+    // Method to redirect user to their dashboard when they click on MyDashboard in the nav bar
+    @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
+    public ModelAndView userDashboard() {
+        ModelAndView response = new ModelAndView();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        // If user is known then a new array of meds is created and added to the model
+        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+            User user = userDao.findByEmail(currentPrincipalName);
+            response.addObject("user", user);
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
+        }
+
+        return response;
+    }
+
 
     // Method to populate meds on userDashboard page
     @RequestMapping(value = "/user/userDashboard/{userId}", method = RequestMethod.GET )

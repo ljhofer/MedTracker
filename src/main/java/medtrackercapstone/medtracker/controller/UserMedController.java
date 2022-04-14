@@ -60,7 +60,6 @@ public class UserMedController {
         }
 
         return response;
-
     }
 
 
@@ -114,7 +113,7 @@ public class UserMedController {
 
     }
 
-    // TODO: Add a param here to get UserMed by Id from the previous page
+    // Method to update a UserMed record
     @RequestMapping(value = "/userMed/updateUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView updateUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -135,7 +134,6 @@ public class UserMedController {
 
             userMed.setUser(user);
 
-            log.info(userMed.toString());
             userMedDao.save(userMed);
 
             // Redirects user to their dashboard page
