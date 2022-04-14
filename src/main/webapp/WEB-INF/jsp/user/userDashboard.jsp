@@ -15,16 +15,16 @@
 <%--                            TODO: Make this userMed id probably--%>
                             <h2 class="accordion-header" id="${med.id}">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${med.id}" aria-expanded="true" aria-controls="collapse${med.id}">
-                                    ${med.medication.name}
+                                    <strong>${med.medication.name}</strong>
                                 </button>
                             </h2>
                             <div id="collapse${med.id}" class="accordion-collapse collapse show" aria-labelledby="heading${med.id}" data-bs-parent="#amedicationAccordion">
                                 <div class="accordion-body">
-                                    <strong>${med.medication.medPurpose}</strong>
+                                    <strong>Purpose: </strong> ${med.medication.medPurpose}
                                     <br>
-                                    Dosage: ${med.dosage}
+                                    <strong>Dosage:</strong> ${med.dosage}
                                     <br>
-                                    Special Instructions: ${med.medication.specialInstructions}
+                                    <strong>Special Instructions:</strong> ${med.medication.specialInstructions}
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <div class="accordion-body">
                                 <strong>${log.medication.name}</strong>
                                 <br>
-                                    ${log.sideEffects}
+                                <strong>Side effects:</strong> ${log.sideEffects}
                             </div>
                         </div>
                     </div>
