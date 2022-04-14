@@ -7,6 +7,7 @@ import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddMedicationFormBean;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,7 @@ public class MedicationController {
     private MedicationDAO medicationDao;
 
     // Method to set view on addMedication page
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/medication/addMed", method = RequestMethod.GET )
     public ModelAndView addMed() {
         ModelAndView response = new ModelAndView();
@@ -37,6 +39,7 @@ public class MedicationController {
     }
 
     // Method to add a medication record based on the information populated in the addMedication form
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/medication/addMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView addMedSubmit(@Valid AddMedicationFormBean form) throws Exception {
         ModelAndView response = new ModelAndView();

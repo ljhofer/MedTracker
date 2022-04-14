@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -95,32 +96,45 @@ public class UserMedController {
 
 
     // Method to set view on updateUserMed page
-    // TODO: Add a param here to get UserMed by Id from the previous page
-    @RequestMapping(value = "/userMed/updateUserMed", method = {RequestMethod.GET, RequestMethod.POST} )
-    public ModelAndView updateUserMed() {
+    @RequestMapping(value = "/userMed/updateUserMed/{userMedId}", method = {RequestMethod.GET, RequestMethod.POST} )
+    public ModelAndView updateUserMed(@PathVariable("userMedId") Integer userMedId) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("userMed/updateUserMed");
 
         UpdateUserMedFormBean form = new UpdateUserMedFormBean();
         response.addObject("form", form);
 
-//        // Creates a new array of all medications
-//        List<UserMed> meds = new ArrayList<>();
-        UserMed userMed = new UserMed();
-//
-//        // Queries the database for all medications
-        // TODO: Make this grab the actual UserMed id and not hard coding it
-        userMed = userMedDao.getById(4);
-//
-//        // Adds med list to model
+        // Creates a new userMed and queries the database to populate form
+        UserMed userMed = userMedDao.getById(userMedId);
+
+        // Adds targeted userMed to model
         response.addObject("userMed", userMed);
 
         return response;
 
     }
 
+    // TODO: Add a param here to get UserMed by Id from the previous page
+    @RequestMapping(value = "/userMed/updateUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView updateUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
+        ModelAndView response = new ModelAndView();
 
 
+        // If user is known creates new userMed record and sets values equal to those in the form
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+            User user = userDao.findByEmail(currentPrincipalName);
+
+
+
+            // Redirects user to their dashboard page
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
+        }
+
+        return response;
+    }
 
 
 

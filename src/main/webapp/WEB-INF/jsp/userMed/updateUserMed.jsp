@@ -14,8 +14,9 @@
         <div class="input-group mb-3" >
             <label class="input-group-text" for="frequencySelect">Frequency</label>
             <select class="form-select" id="frequencySelect" name="frequency" >
-                <option selected>Choose dose frequency...</option>
-                <option value="1">Every hour</option>
+                <option selected>Update frequency...</option>
+                <option value="${userMed.frequency}">Currently taking every ${userMed.frequency} hour(s)</option>
+                <option value="1">Every 1 hour</option>
                 <option value="2">Every 2 hours</option>
                 <option value="3">Every 3 hours</option>
                 <option value="4">Every 4 hours</option>
@@ -28,7 +29,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="dosageInput">Dosage</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" value="Enter medication amount for each dose">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" value="${userMed.dosage}">
         </div>
 
 <%--        Button for submitting userMed changes--%>
@@ -38,7 +39,7 @@
 
 <%--        Button for deleting userMed--%>
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Delete Med" />
+            <input class="btn btn-secondary btn-md" type="" value="Delete Med" />
         </div>
 
     </form>
