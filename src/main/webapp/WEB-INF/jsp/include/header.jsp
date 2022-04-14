@@ -39,6 +39,11 @@
                             <a class="nav-link" href="/user/register">Sign Up</a>
                         </li>
                     </sec:authorize>
+                    <sec:authorize access="hasAuthority('ADMIN')">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/medication/addMed/">Add Med</a>
+                        </li>
+                    </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <li class="nav-item">
                             <a class="nav-link" href="/user/userDashboard/">MyDashboard</a>

@@ -55,10 +55,13 @@ form {
     text-align: right;
 }
 
-.userDashboardButton {
-    margin: 15px;
-}
+/*Styles for links on userDashboard page*/
+/*.userDashboardButton {*/
+/*    margin: 100px;*/
+/*}*/
 
 h3 {
     color:black;
 }
+
+
