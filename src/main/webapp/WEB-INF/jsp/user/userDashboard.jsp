@@ -41,7 +41,7 @@
                     <c:forEach items="${logs}" var="log">
                     <div class="accordion-item" >
                         <h2 class="accordion-header" id="${log.id}">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseid="${log.id}"" aria-expanded="true" aria-controls="collapse${log.id}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseid${log.id}" aria-expanded="true" aria-controls="collapse${log.id}">
                                 ${log.createdOn}
                             </button>
                         </h2>
