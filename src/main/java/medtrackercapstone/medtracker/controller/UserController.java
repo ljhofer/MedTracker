@@ -98,7 +98,7 @@ public class UserController {
 
         log.info(form.toString());
 
-        // TODO: Decide what to do here and add approppriate commenting
+        // TODO: Decide what to do here and add appropriate commenting
         response.setViewName("redirect:/user/userDashboard/" + user.getId());
 
         return response;
@@ -114,7 +114,6 @@ public class UserController {
         List<UserMed> meds = new ArrayList<>();
         List<Log> logs = new ArrayList<>();
 
-        // TODO: Change to logs and meds for this user
         // Queries the database for all medications and logs
         meds = userMedDao.findByUserId(userId);
         logs = logDao.findByUserId(userId);

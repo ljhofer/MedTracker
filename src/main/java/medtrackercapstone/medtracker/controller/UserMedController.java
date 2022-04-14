@@ -126,8 +126,17 @@ public class UserMedController {
 
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
+            UserMed userMed = new UserMed();
 
+            userMed.setId(form.getId());
+            userMed.setFrequency(form.getFrequency());
+            userMed.setDosage(form.getDosage());
+            userMed.setMedication(medicationDao.getById(form.getMedId()));
 
+            userMed.setUser(user);
+
+            log.info(userMed.toString());
+            userMedDao.save(userMed);
 
             // Redirects user to their dashboard page
             response.setViewName("redirect:/user/userDashboard/" + user.getId());
