@@ -20,7 +20,27 @@
 
     </form>
 
-    <h2>${meds}</h2>
+<%--    <div class="row ">--%>
+        <table class="table table-secondary" id="table-div">
+            <tr class="table">
+                <th scope="col" class="table-secondary">Name</th>
+                <th scope="col" class="table-secondary">Purpose</th>
+                <th scope="col" class="table-secondary">Special Instructions</th>
+            </tr>
+
+            <c:forEach items="${meds}" var="med">
+                <tr class="table">
+                    <td class="table-secondary">${med.name}</td>
+                    <td class="table-secondary">${med.medPurpose}</td>
+                    <td class="table-secondary">${med.specialInstructions}</td>
+                </tr>
+            </c:forEach>
+        </table>
+<%--    </div>--%>
+
+
+
+
 </container>
 
 

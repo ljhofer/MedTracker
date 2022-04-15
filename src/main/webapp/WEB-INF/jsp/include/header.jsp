@@ -41,7 +41,7 @@
                     </sec:authorize>
                     <sec:authorize access="hasAuthority('ADMIN')">
                         <li class="nav-item">
-                            <a class="nav-link" href="/medication/addMed/">Manage Database</a>
+                            <a class="nav-link" href="/medication/searchMeds/">Manage Database</a>
                         </li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
