@@ -5,6 +5,7 @@ import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -25,6 +26,7 @@ public interface UserMedDAO extends JpaRepository<UserMed, Integer> {
 
     List<UserMed> findByUserId (@Param("userId") Integer userId);
 
-//    UserMed findByMedId (@Param("medId") Integer medId);
+//    @Query(value="SELECT um.medication FROM UserMed um where um.medication.id= :medId")
+//    Medication findByMedId (@Param("medId") Integer medId);
 
 }

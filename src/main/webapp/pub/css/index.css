@@ -38,6 +38,7 @@ form {
     font-size: 45px;
 }
 
+/*Styles for user dashboard page*/
 
 /*Styles for accordion feature on user dashboard*/
 .accordion {
@@ -52,17 +53,31 @@ form {
 .userDashboardHeader {
     color: white;
     display: inline;
-    text-align: right;
+    /*text-align: right;*/
+    margin: 30px;
 }
 
-/*Styles for links on userDashboard page*/
-/*.userDashboardButton {*/
-/*    margin: 100px;*/
-/*}*/
+.updateMedLink {
+    color: black;
+    text-weight: bolder;
+    text-decoration: none;
+    text-underline: none;
+    text-align: end;
+}
+
+.updateMedLink:hover {
+    color: black;
+    outline-width: 1px;
+    outline-color: orangered;
+    font-weight: bolder;
+}
+
 
 h3 {
     color:black;
 }
+
+
 
 
 /*Styling for search page*/

@@ -17,7 +17,7 @@
 <%--                success : function(data) {--%>
 <%--                    console.log("success " + data)--%>
 <%--                    console.log("After Ajax Callback")--%>
-<%--                    $( "#dosageOutput" ).text( data );--%>
+<%--                    $( "#dosageOutput" ).text( data);--%>
 <%--                },--%>
 <%--                error : function(request,error)--%>
 <%--                {--%>
@@ -45,12 +45,12 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="dosageInput">Dosage</span>
-                <input type="text"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly name="" value="${med.dosage}" readonly>
+                <input id="dosageOutput" type="text"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.dosage}" >
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="specialInstructionsInput">Special Instructions</span>
-                <input type="text"  id="specialInstructionsOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.medication.special_instructions}" readonly>
+                <input type="text"  id="specialInstructionsOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.medication.special_instructions}">
             </div>
 
             <div class="input-group mb-3">
@@ -62,7 +62,7 @@
                 <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
             </div>
         </form>
-        <h2 id="dosageOutput"></h2>
+        <h2 ></h2>
 </div>
 
 
@@ -72,7 +72,7 @@
 <%--    // dosageOutput.innerHTML = slider.value; // Display the default slider value--%>
 <%--    // Update the current slider value (each time you drag the slider handle)--%>
 <%--    medicationSelect.onchange = function() {--%>
-<%--        dosageOutput.innerHTML = this.value;--%>
+<%--        dosageOutput.setAttribute("value", this.value());--%>
 <%--    }--%>
 <%--</script>--%>
 

@@ -7,9 +7,10 @@
    <div class="container">
         <div class="row">
             <div class="col-6">
+                <h1 class="userDashboardHeader">My Meds</h1>
+                <a href="/userMed/addUserMed" id="addUserMedButton" class="btn btn-secondary userDashboardButton" style="margin-bottom: 15px"> + Add New Med</a>
                 <div class="accordion" id="medicationAccordion" style="margin-top: 20px">
-                    <h1 class="userDashboardHeader">My Meds</h1>
-                    <a href="/userMed/addUserMed" id="addUserMedButton" class="btn btn-secondary userDashboardButton" style="margin-bottom: 15px"> + Add New Med</a>
+
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item" >
 <%--                            TODO: Make this userMed id probably--%>
@@ -25,6 +26,9 @@
                                     <strong>Dosage:</strong> ${med.dosage}
                                     <br>
                                     <strong>Special Instructions:</strong> ${med.medication.specialInstructions}
+                                    <br>
+                                    <br>
+                                    <a href="/userMed/updateUserMed/${med.id}" class="updateMedLink">Update Med</a>
                                 </div>
                             </div>
                         </div>
@@ -34,9 +38,9 @@
 
 <%--    My logs accordion--%>
             <div class="col-6">
+                <h1 class="userDashboardHeader">My Logs</h1>
+                <a href="/log/addUserLog" id="addUserLogButton" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
                 <div class="accordion" id="logAccordion" style="margin-top: 20px">
-                    <h1 class="userDashboardHeader">My Logs</h1>
-                    <a href="/log/addUserLog" id="addUserMedButton" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
                     <c:forEach items="${logs}" var="log">
                     <div class="accordion-item" >
                         <h2 class="accordion-header" id="${log.id}">
