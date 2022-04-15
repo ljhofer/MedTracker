@@ -55,7 +55,7 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="sideEffectInput">Side effects</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="sideEffects"  value="Enter any side effects you have noticed since your last dose">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="sideEffects"  placeholder="Enter any side effects you have noticed since your last dose">
             </div>
 
             <div class="col-md-3 mt-4 pt-2">

@@ -35,7 +35,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="dosageInput">Dosage</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" value="Enter medication amount for each dose">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" placeholder="Enter medication amount for each dose">
         </div>
 
         <div class="col-md-3 mt-4 pt-2">

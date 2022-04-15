@@ -9,17 +9,17 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="nameInput">Medication Name</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="name" value="Enter medication name">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Enter medication name">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="purposeInput">Purpose</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="medPurpose" value="Enter medication purpose">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="medPurpose" placeholder="Enter medication purpose">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="specialInstructionsInput">Special Instructions</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="specialInstructions" value="Enter special instructions for medication ">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="specialInstructions" placeholder="Enter special instructions for medication ">
         </div>
 
         <div class="col-md-3 mt-4 pt-2">
