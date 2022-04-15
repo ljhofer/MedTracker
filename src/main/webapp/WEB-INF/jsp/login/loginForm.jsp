@@ -57,3 +57,5 @@
 </section>
 
 <jsp:include page="../include/footer.jsp" />
+
+<%--extra comment--%>
