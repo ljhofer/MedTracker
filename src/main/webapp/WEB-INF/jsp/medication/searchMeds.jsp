@@ -30,9 +30,9 @@
 
             <c:forEach items="${meds}" var="med">
                 <tr class="table">
-                    <td class="table-secondary">${med.name}</td>
-                    <td class="table-secondary">${med.medPurpose}</td>
-                    <td class="table-secondary">${med.specialInstructions}</td>
+                    <td class="">${med.name}</td>
+                    <td class="">${med.medPurpose}</td>
+                    <td class="">${med.specialInstructions}</td>
                 </tr>
             </c:forEach>
         </table>
