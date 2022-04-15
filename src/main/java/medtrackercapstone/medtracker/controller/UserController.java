@@ -150,27 +150,6 @@ public class UserController {
     }
 
 
-    // Method to return medication data based on medication name -- goldplating for admin role
-
-//    @RequestMapping(value = "/user/dashboard", method = RequestMethod.GET )
-//    public ModelAndView findByName(@RequestParam (required = false) String name) {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/dashboard");
-//
-//        // Creates a new array of all medications
-//        List<Medication> meds = new ArrayList<>();
-//        name = "Aspirin";
-//
-//        // Queries the database for all medications
-//        meds = medicationDao.findByName(name);
-//
-//        // Adds med list to model
-//        response.addObject("meds", meds);
-//
-//        return response;
-//
-//    }
-
 
 
 

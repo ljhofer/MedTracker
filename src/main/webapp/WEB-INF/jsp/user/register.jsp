@@ -72,6 +72,7 @@
                             <div class="col-md-3 mt-4 pt-2">
                                 <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
                             </div>
+                            <a href="/login/login" id="sendToRegisterButton" class="btn btn-secondary btn-md userDashboardButton" style="margin-bottom: 15px"> Log In Instead </a>
                         </form>
                     </div>
                 </div>
