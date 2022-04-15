@@ -31,13 +31,4 @@
 </container>
 
 
-
-
-
-
-
-
-
-
-
 <jsp:include page="../include/footer.jsp" />

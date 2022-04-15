@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -77,7 +78,27 @@ public class MedicationController {
         return response;
     }
 
+    // Method to set view on medication search page
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/medication/searchMeds", method = RequestMethod.GET )
+    public ModelAndView searchMed(@RequestParam (required = false) String searchMed) {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("medication/searchMeds");
 
+        List<Medication> meds = new ArrayList<>();
+
+        if ( searchMed != null && !searchMed.isBlank()) {
+
+            meds = medicationDao.findByName(searchMed);
+        }
+
+        response.addObject("meds", meds);
+
+        response.addObject("searchMed", searchMed);
+
+        return response;
+
+    }
 
 
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MedicationDAO extends JpaRepository<Medication, Integer> {
 
-//    List<Medication> findByName(@Param("name") String name);
+    List<Medication> findByName(@Param("name") String name);
 
     List<Medication> findAll();
 
