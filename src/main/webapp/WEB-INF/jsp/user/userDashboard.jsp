@@ -9,7 +9,6 @@
             <div class="col-6">
                 <div class="accordion" id="medicationAccordion">
                     <h1 class="userDashboardHeader">My Meds</h1>
-                    <%--                    TODO: Add in href here--%>
                     <a href="/userMed/addUserMed" id="addUserMedButton" class="btn btn-secondary userDashboardButton" style="margin-bottom: 15px"> + Add New Med</a>
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item">
