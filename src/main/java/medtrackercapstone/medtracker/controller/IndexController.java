@@ -4,6 +4,7 @@ package medtrackercapstone.medtracker.controller;
 import lombok.extern.slf4j.Slf4j;
 import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.entity.User;
+import medtrackercapstone.medtracker.security.AuthenticationFacade;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,18 +21,21 @@ public class IndexController {
     @Autowired
     private UserDAO userDao;
 
+    @Autowired
+    private AuthenticationFacade authentication;
+
     @RequestMapping(value= "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("index");
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
+        String username = authentication.getAuthentication();
+        User user = userDao.findByEmail(username);
 
-        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
-            User user = userDao.findByEmail(currentPrincipalName);
+        if(user !=null) {
             response.addObject(user);
             response.setViewName("redirect:/user/userDashboard/" + user.getId());
+
         }
 
         return response;

@@ -7,7 +7,6 @@
     $( document ).ready(function() {
         $( "#medicationSelect" ).on( "change", function() {
             let chosenMedId = $( "#medicationSelect" ).val();
-            console.log("Before ajax call")
             $.ajax({
                 url : '/ajaxRequest',
                 type : 'GET',
@@ -16,8 +15,8 @@
                 },
                 success : function(data) {
                     console.log("success " + data)
-                    console.log("After Ajax Callback")
-                    $( "#dosageOutput" ).text( data);
+                    $( "#dosageOutput" ).val(data[0]);
+                    $( "#specialInstructionsOutput" ).val(data[1]);
                 },
                 error : function(request,error)
                 {
@@ -45,7 +44,7 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="dosageInput">Dosage</span>
-                <input id="dosageOutput" type="text"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.dosage}" >
+                <input type="text" id="dosageOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.dosage}" >
             </div>
 
             <div class="input-group mb-3">
@@ -66,15 +65,6 @@
 </div>
 
 
-<%--<script>--%>
-<%--    const medicationSelect = document.getElementById("medicationSelect");--%>
-<%--    const dosageOutput = document.getElementById("dosageOutput");--%>
-<%--    // dosageOutput.innerHTML = slider.value; // Display the default slider value--%>
-<%--    // Update the current slider value (each time you drag the slider handle)--%>
-<%--    medicationSelect.onchange = function() {--%>
-<%--        dosageOutput.setAttribute("value", this.value());--%>
-<%--    }--%>
-<%--</script>--%>
 
 
 
