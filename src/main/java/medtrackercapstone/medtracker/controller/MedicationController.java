@@ -90,7 +90,7 @@ public class MedicationController {
 //        If medication search is not null then queries the database for that medication and send it to the object
         if ( searchMed != null && !searchMed.isBlank()) {
 
-            meds = medicationDao.findByName(searchMed);
+            meds = medicationDao.findByNameContaining(searchMed);
         }
 
         response.addObject("meds", meds);
