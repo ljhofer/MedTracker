@@ -14,14 +14,18 @@
         </div>
 
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
+            <input class="btn btn-secondary btn-md" type="submit" value="Search" />
         </div>
+        <br>
 
 
     </form>
 
 <%--    <div class="row ">--%>
-        <table class="table table-secondary" id="table-div">
+        <c:if test="${not empty searchMed}">
+            <h5 style="margin-left: 5px">Search found ${meds.size()} result(s) </h5>
+        </c:if>
+        <table class="table table-secondary table-striped" id="table-div">
             <tr class="table">
                 <th scope="col" class="table-secondary">Name</th>
                 <th scope="col" class="table-secondary">Purpose</th>
@@ -30,7 +34,7 @@
 
             <c:forEach items="${meds}" var="med">
                 <tr class="table">
-                    <td class="">${med.name}</td>
+                    <td class=""><strong>${med.name}</strong></td>
                     <td class="">${med.medPurpose}</td>
                     <td class="">${med.specialInstructions}</td>
                 </tr>
