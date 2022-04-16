@@ -1,5 +1,6 @@
 package medtrackercapstone.medtracker.database.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Medication {
     @OneToMany(mappedBy = "medication", fetch = FetchType.LAZY )
     private List<UserMed> userMeds = new ArrayList();
 
+//    @JsonIgnore
     @OneToMany(mappedBy = "medication", fetch = FetchType.LAZY)
     private List<Log> logs;
 

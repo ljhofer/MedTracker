@@ -3,31 +3,31 @@
 <jsp:include page="../include/header.jsp" />
 
 
-<%--<script>--%>
-<%--    $( document ).ready(function() {--%>
-<%--        $( "#medicationSelect" ).on( "change", function() {--%>
-<%--            let chosenMedId = $( "#medicationSelect" ).val();--%>
-<%--            console.log("Before ajax call")--%>
-<%--            $.ajax({--%>
-<%--                url : '/ajaxRequest',--%>
-<%--                type : 'GET',--%>
-<%--                data : {--%>
-<%--                    'chosenMedId' : chosenMedId--%>
-<%--                },--%>
-<%--                success : function(data) {--%>
-<%--                    console.log("success " + data)--%>
-<%--                    console.log("After Ajax Callback")--%>
-<%--                    $( "#dosageOutput" ).text( data);--%>
-<%--                },--%>
-<%--                error : function(request,error)--%>
-<%--                {--%>
-<%--                    console.log("error = " + error + "  " + request)--%>
-<%--                }--%>
-<%--            });--%>
-<%--            console.log("After Ajax Call")--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
+<script>
+    $( document ).ready(function() {
+        $( "#medicationSelect" ).on( "change", function() {
+            let chosenMedId = $( "#medicationSelect" ).val();
+            console.log("Before ajax call")
+            $.ajax({
+                url : '/ajaxRequest',
+                type : 'GET',
+                data : {
+                    'chosenMedId' : chosenMedId
+                },
+                success : function(data) {
+                    console.log("success " + data)
+                    console.log("After Ajax Callback")
+                    $( "#dosageOutput" ).text( data);
+                },
+                error : function(request,error)
+                {
+                    console.log("error = " + error + "  " + request)
+                }
+            });
+            console.log("After Ajax Call")
+        });
+    });
+</script>
 
 
 <div class="container py-5 col-9 card shadow-2-strong" style="margin-top:30px">

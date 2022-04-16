@@ -1,5 +1,6 @@
 package medtrackercapstone.medtracker.database.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 
@@ -34,6 +35,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY )
     private List<UserMed> userMeds = new ArrayList();
 
+//    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Log> logs;
 

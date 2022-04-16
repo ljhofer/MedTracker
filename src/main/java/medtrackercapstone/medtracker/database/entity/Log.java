@@ -1,5 +1,6 @@
 package medtrackercapstone.medtracker.database.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,11 +28,13 @@ public class Log {
     @Column(name = "created_on")
     private Date createdOn;
 
+//    @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "med_id", nullable = false)
     private Medication medication;
 
+//    @JsonIgnore
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)

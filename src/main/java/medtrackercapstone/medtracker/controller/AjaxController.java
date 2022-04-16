@@ -31,13 +31,13 @@ public class AjaxController {
         return response;
     }
 
-//    @RequestMapping(value = "/ajaxRequest", method = RequestMethod.GET)
-//    public Medication ajaxRequest(@RequestParam Integer chosenMedId) throws Exception {
-//        Medication medication = userMedDAO.findByMedId(chosenMedId);
-//
-//        log.info(medication.toString());
-//
-//        return medication;
-//    }
+    @RequestMapping(value = "/ajaxRequest", method = RequestMethod.GET)
+    public ResponseEntity<UserMed> ajaxRequest(@RequestParam Integer chosenMedId) throws Exception {
+        UserMed userMed = userMedDAO.findByMedId(chosenMedId, 1);
+
+        log.info(userMed.toString());
+
+        return new ResponseEntity(userMed, HttpStatus.OK);
+    }
 
 }
