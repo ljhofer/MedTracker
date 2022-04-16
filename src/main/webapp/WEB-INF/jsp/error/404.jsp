@@ -1,10 +1,13 @@
-<h1>404 Error Page #2</h1>
-<p class="zoom-area"><b>CSS</b> animations to make a cool 404 page. </p>
-<section class="error-container">
-    <span class="four"><span class="screen-reader-text">4</span></span>
-    <span class="zero"><span class="screen-reader-text">0</span></span>
-    <span class="four"><span class="screen-reader-text">4</span></span>
-</section>
-<div class="link-container">
-    <a target="_blank" href="https://www.silocreativo.com/en/creative-examples-404-error-css/" class="more-link">Visit the original article</a>
+<jsp:include page="../include/header.jsp" />
+<%--<link href="../../../webapp/pub/css/404.css">--%>
+
+
+
+<div class="card mx-auto text-center" id="404-div" style="width: 50%;">
+    <img src="../../../pub/images/404.jpg" class="card-img-top" alt="Sad dog on a bed">
+    <div class="card-body">
+        <h5 class="card-title">404</h5>
+        <p class="card-text">Page Doesn't Exist</p>
+        <a href="/index" class="btn btn-secondary">Go to Home</a>
+    </div>
 </div>
