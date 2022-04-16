@@ -43,6 +43,7 @@ public class AjaxController {
         return response;
     }
 
+    // Method queries the database for the dosage and special instructions for the medication chosen in the log
     @RequestMapping(value = "/ajaxRequest", method = RequestMethod.GET)
     public ResponseEntity<List<String>> ajaxRequest(@RequestParam Integer chosenMedId) throws Exception {
 
