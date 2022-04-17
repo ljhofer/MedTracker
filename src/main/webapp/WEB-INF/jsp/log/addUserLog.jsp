@@ -33,12 +33,11 @@
             <div class="input-group mb-3" >
                 <label class="input-group-text" for="medicationSelect">My Medications</label>
                 <select class="form-select" name="medId" id="medicationSelect">
-                    <option selected>Choose medication...</option>
+                    <option selected value="">Choose medication...</option>
                     <c:forEach items="${meds}" var="med">
                     <option value="${med.medication.id}" name="medId">${med.medication.name}</option>
                     </c:forEach>
                 </select>
-
             </div>
             <c:forEach items="${bindingResult.getFieldErrors('medId')}" var="error">
                 <div style="color: orangered;">

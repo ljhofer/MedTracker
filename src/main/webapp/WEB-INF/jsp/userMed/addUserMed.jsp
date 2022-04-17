@@ -17,6 +17,11 @@
                 </c:forEach>
             </select>
         </div>
+        <c:forEach items="${bindingResult.getFieldErrors('medId')}" var="error">
+            <div style="color: orangered;">
+                    Please select a medication.
+            </div>
+        </c:forEach>
 
         <div class="input-group mb-3" >
             <label class="input-group-text" for="frequencySelect">Frequency</label>
@@ -32,11 +37,21 @@
                 <option value="24">Every 24 hours</option>
             </select>
         </div>
+        <c:forEach items="${bindingResult.getFieldErrors('frequency')}" var="error">
+            <div style="color: orangered;">
+                Frequency is required.
+            </div>
+        </c:forEach>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="dosageInput">Dosage</span>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" placeholder="Enter medication amount for each dose">
         </div>
+        <c:forEach items="${bindingResult.getFieldErrors('dosage')}" var="error">
+            <div style="color: orangered;">
+                Dosage is required.
+            </div>
+        </c:forEach>
 
         <div class="col-md-3 mt-4 pt-2">
             <input class="btn btn-secondary btn-md" type="submit" value="Submit" />

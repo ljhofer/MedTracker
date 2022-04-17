@@ -65,13 +65,35 @@ public class UserMedController {
 
     // Method to add a UserMed record based on the information populated in the addUserMed form
     @RequestMapping(value = "/userMed/addUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView addUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
+    public ModelAndView addUserMedSubmit(@Valid AddUserMedFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
+//        Checks for errors/missing fields in user input and displays the errors back to the user
+        if (bindingResult.hasErrors() ) {
+            for ( ObjectError error : bindingResult.getAllErrors()) {
+                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+            }
+
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            // If user is known then a new array of meds is created and added to the model
+            if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+                User user = userDao.findByEmail(currentPrincipalName);
+                List<Medication> meds = medicationDao.findAll();
+                response.addObject("meds", meds);
+            }
+
+            response.setViewName("/userMed/addUserMed");
+            return response;
+        }
 
 
         // If user is known creates new userMed record and sets values equal to those in the form
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
 
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
@@ -115,9 +137,22 @@ public class UserMedController {
 
     // Method to update a UserMed record
     @RequestMapping(value = "/userMed/updateUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView updateUserMedSubmit(@Valid AddUserMedFormBean form) throws Exception {
+    public ModelAndView updateUserMedSubmit(@Valid AddUserMedFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
+        //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
+//        Checks for errors/missing fields in user input and displays the errors back to the user
+//        if (bindingResult.hasErrors() ) {
+//            for ( ObjectError error : bindingResult.getAllErrors()) {
+//                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+//            }
+//
+//            response.addObject("form", form);
+//            response.addObject("bindingResult", bindingResult);
+//
+//            response.setViewName("/userMed/updateUserMed");
+//            return response;
+//        }
 
         // If user is known creates new userMed record and sets values equal to those in the form
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

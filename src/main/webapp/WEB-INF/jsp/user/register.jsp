@@ -23,7 +23,7 @@
                                         </div>
                                         <c:forEach items="${bindingResult.getFieldErrors('name')}" var="error">
                                             <div style="color: orangered;">
-                                                    ${error.getDefaultMessage()}
+                                                    Username is required.
                                             </div>
                                         </c:forEach>
                                     </div>
@@ -39,7 +39,7 @@
                                         </div>
                                         <c:forEach items="${bindingResult.getFieldErrors('email')}" var="error">
                                             <div style="color: orangered;">
-                                                    ${error.getDefaultMessage()}
+                                                    Email is required.
                                             </div>
                                         </c:forEach>
                                     </div>
@@ -54,12 +54,12 @@
                                     <div class="form-outline">
                                         <input type="password" id="passwordInput" class="form-control form-control-lg" name="password" value="${form.password}" required />
                                         <label class="form-label" for="passwordInput">Password</label>
-                                        <div class="invalid-feedback">
-                                            Please enter a password.
-                                        </div>
+<%--                                        <div class="invalid-feedback">--%>
+<%--                                            Please enter a password.--%>
+<%--                                        </div>--%>
                                         <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">
                                             <div style="color: orangered;">
-                                                    ${error.getDefaultMessage()}
+                                                ${error.getDefaultMessage()}
                                             </div>
                                         </c:forEach>
                                     </div>
@@ -75,7 +75,7 @@
                                         </div>
                                         <c:forEach items="${bindingResult.getFieldErrors('confirmPassword')}" var="error">
                                             <div style="color: orangered;">
-                                                    ${error.getDefaultMessage()}
+                                                    Password confirm is required.
                                             </div>
                                         </c:forEach>
                                     </div>
