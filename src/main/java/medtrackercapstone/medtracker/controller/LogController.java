@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,7 +57,6 @@ public class LogController {
         AddUserLogFormBean form = new AddUserLogFormBean();
         response.addObject("form", form);
 
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
@@ -69,34 +71,38 @@ public class LogController {
 
     }
 
+
     // Method to add a UserMed record based on the information populated in the addUserMedFormBean
     @RequestMapping(value = "/log/addUserLogSubmit", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView addUserLogSubmit(@Valid AddUserLogFormBean form) throws Exception {
+    public ModelAndView addUserLogSubmit(@Valid AddUserLogFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
         log.info(form.toString());
 
-//        if (bindingResult.hasErrors() ) {
-//
-//            List<String> errorMessages = new ArrayList<>();
-//            for ( ObjectError error : bindingResult.getAllErrors()) {
-//                errorMessages.add(error.getDefaultMessage());
-//                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
-//            }
-//
-//            response.addObject("form", form);
-//
-//            response.addObject("bindingResult", bindingResult);
-//
-//            // because there is one or more error we do not want to process the logic below
-//            // that will creat a new user in the database we want to show the same model that we are already on
-//            response.setViewName("/medication/userMedSubmit");
-//            return response;
-//        }
+//        Checks for errors/missing fields in user input and displays the errors back to the user
+        if (bindingResult.hasErrors() ) {
+            for ( ObjectError error : bindingResult.getAllErrors()) {
+                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+            }
 
-        // Creates new userMed record and sets values equal to those in the form
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
 
+            // Reloads the medication dropdown for current user
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipalName = authentication.getName();
 
+            if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+                User user = userDao.findByEmail(currentPrincipalName);
+                List<UserMed> meds = userMedDao.findByUserId(user.getId());
+                response.addObject("meds", meds);
+            }
+
+            response.setViewName("/log/addUserLog");
+            return response;
+        }
+
+        // Creates new userLog record and sets values equal to those in the form
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 

@@ -21,6 +21,11 @@
                                         <div class="invalid-feedback">
                                             Please enter your name.
                                         </div>
+                                        <c:forEach items="${bindingResult.getFieldErrors('name')}" var="error">
+                                            <div style="color: orangered;">
+                                                    ${error.getDefaultMessage()}
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
 
@@ -32,7 +37,13 @@
                                         <div class="invalid-feedback">
                                             Please enter your email.
                                         </div>
+                                        <c:forEach items="${bindingResult.getFieldErrors('email')}" var="error">
+                                            <div style="color: orangered;">
+                                                    ${error.getDefaultMessage()}
+                                            </div>
+                                        </c:forEach>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -46,6 +57,11 @@
                                         <div class="invalid-feedback">
                                             Please enter a password.
                                         </div>
+                                        <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">
+                                            <div style="color: orangered;">
+                                                    ${error.getDefaultMessage()}
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
 
@@ -57,17 +73,14 @@
                                         <div class="invalid-feedback">
                                             Please confirm your password.
                                         </div>
+                                        <c:forEach items="${bindingResult.getFieldErrors('confirmPassword')}" var="error">
+                                            <div style="color: orangered;">
+                                                    ${error.getDefaultMessage()}
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
-
-<%--                            TODO: Add in dropbox or radio buttons later--%>
-<%--                            <h2>I am a:</h2>--%>
-<%--                            <select class="select form-control-md" id="dropdown">--%>
-<%--                                <option value="1" disabled>Choose one</option>--%>
-<%--                                <option value="2">User</option>--%>
-<%--                                <option value="3">Admin</option>--%>
-<%--                            </select>--%>
 
                             <div class="col-md-3 mt-4 pt-2">
                                 <input class="btn btn-secondary btn-md" type="submit" value="Sign Up" />

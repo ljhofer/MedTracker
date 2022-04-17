@@ -14,7 +14,6 @@
                     'chosenMedId' : chosenMedId
                 },
                 success : function(data) {
-                    console.log("success " + data)
                     $( "#dosageOutput" ).val(data[0]);
                     $( "#specialInstructionsOutput" ).val(data[1]);
                 },
@@ -23,14 +22,13 @@
                     console.log("error = " + error + "  " + request)
                 }
             });
-            console.log("After Ajax Call")
         });
     });
 </script>
 
 
 <div class="container py-5 col-9 card shadow-2-strong" style="margin-top:30px">
-    <h2 style="color:black; margin-left: 0; margin-top: 0;">Log Your Meds</h2>
+    <h2 style="color:black; margin-left: 27px; margin-top: 0; margin-bottom: 25px;">Log Your Meds</h2>
         <form action="/log/addUserLogSubmit" id="addLogForm">
             <div class="input-group mb-3" >
                 <label class="input-group-text" for="medicationSelect">My Medications</label>
@@ -40,16 +38,22 @@
                     <option value="${med.medication.id}" name="medId">${med.medication.name}</option>
                     </c:forEach>
                 </select>
-            </div>
 
+            </div>
+            <c:forEach items="${bindingResult.getFieldErrors('medId')}" var="error">
+                <div style="color: orangered;">
+                    Please select a medication
+                </div>
+                <br>
+            </c:forEach>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="dosageInput">Dosage</span>
-                <input type="text" id="dosageOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.dosage}" >
+                <input type="text" id="dosageOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.dosage}" readonly>
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="specialInstructionsInput">Special Instructions</span>
-                <input type="text"  id="specialInstructionsOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.medication.special_instructions}">
+                <input type="text"  id="specialInstructionsOutput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="" value="${med.medication.special_instructions}" readonly>
             </div>
 
             <div class="input-group mb-3">

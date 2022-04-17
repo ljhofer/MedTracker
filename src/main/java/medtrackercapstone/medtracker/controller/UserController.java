@@ -2,10 +2,8 @@ package medtrackercapstone.medtracker.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
-//import medtrackercapstone.medtracker.database.dao.UserDAO;
 import medtrackercapstone.medtracker.database.dao.*;
 import medtrackercapstone.medtracker.database.entity.*;
-import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +29,6 @@ public class UserController {
 
     @Autowired
     private UserDAO userDao;
-
-    @Autowired
-    private MedicationDAO medicationDao;
 
     @Autowired
     private LogDAO logDao;
@@ -62,22 +57,26 @@ public class UserController {
         return response;
     }
 
+
     // Method to register new user
     @RequestMapping(value = "/user/registerSubmit", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView registerSubmit(@Valid RegisterFormBean form) throws Exception {
+    public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
 //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
-//        if (bindingResult.hasErrors() ) {
-//            for ( ObjectError error : bindingResult.getAllErrors()) {
-//                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
-//            }
-//
-//            // because there is one or more error we do not want to process the logic below
-//            // that will creat a new user in the database we want to show the same model that we are already on
-//            response.setViewName("/user/register");
-//            return response;
-//        }
+//        Checks for errors/missing fields in user input and displays the errors back to the user
+        if (bindingResult.hasErrors() ) {
+            for ( ObjectError error : bindingResult.getAllErrors()) {
+                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+            }
+
+            response.addObject("form", form);
+
+            response.addObject("bindingResult", bindingResult);
+
+            response.setViewName("/user/register");
+            return response;
+        }
 
         // Checks to see if user is already in the database
         User user = userDao.findByEmail(form.getEmail());
@@ -102,11 +101,12 @@ public class UserController {
 
         log.info(form.toString());
 
-        // TODO: Decide what to do here and add appropriate commenting
+        // Redirects user to their dashboard page upon registration
         response.setViewName("redirect:/user/userDashboard/" + user.getId());
 
         return response;
     }
+
 
     // Method to redirect user to their dashboard when they click on MyDashboard in the nav bar
     @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
@@ -148,9 +148,6 @@ public class UserController {
         return response;
 
     }
-
-
-
 
 
     }
