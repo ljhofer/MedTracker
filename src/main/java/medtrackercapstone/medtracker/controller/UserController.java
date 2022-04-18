@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -63,7 +64,7 @@ public class UserController {
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
-//        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
+
 //        Checks for errors/missing fields in user input and displays the errors back to the user
         if (bindingResult.hasErrors() ) {
             for ( ObjectError error : bindingResult.getAllErrors()) {
@@ -140,6 +141,9 @@ public class UserController {
         // Queries the database for all medications and logs
         meds = userMedDao.findByUserId(userId);
         logs = logDao.findByUserId(userId);
+
+        // Reverses the log list to print most recent first
+        Collections.reverse(logs);
 
         // Adds med list to model
         response.addObject("meds", meds);
