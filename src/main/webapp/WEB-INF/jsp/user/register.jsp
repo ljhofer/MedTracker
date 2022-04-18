@@ -68,7 +68,7 @@
                                 <!-- Confirm Password -->
                                 <div class="col-md-6 mb-2 pb-2">
                                     <div class="form-outline">
-                                        <input type="password" id="confirmPasswordInput" class="form-control form-control-lg" name="confirmPassword" value="${form.confirmPassword}" required/>
+                                        <input type="password" onkeyup="check();" id="confirmPasswordInput" class="form-control form-control-lg" name="confirmPassword" value="${form.confirmPassword}" required/>
                                         <label class="form-label" for="confirmPasswordInput">Confirm Password</label>
                                         <div class="invalid-feedback">
                                             Please confirm your password.
@@ -78,10 +78,10 @@
                                                     Password confirm is required.
                                             </div>
                                         </c:forEach>
+                                        <div class="col-12 m-4 pt-2" id="message"></div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-3 mt-4 pt-2">
                                 <input class="btn btn-secondary btn-md" type="submit" value="Sign Up" />
                             </div>
