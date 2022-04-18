@@ -140,7 +140,6 @@ public class UserMedController {
     public ModelAndView updateUserMedSubmit(@Valid UpdateUserMedFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
-        //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
 //        Checks for errors/missing fields in user input and displays the errors back to the user
         if (bindingResult.hasErrors() ) {
             for ( ObjectError error : bindingResult.getAllErrors()) {
@@ -152,7 +151,6 @@ public class UserMedController {
 
             UserMed userMed = userMedDao.getById(form.getId());
             response.addObject("userMed", userMed);
-            log.info(userMed.getId().toString());
 
             response.setViewName("userMed/updateUserMed");
             return response;

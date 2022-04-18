@@ -3,12 +3,14 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<%--    My meds accordion--%>
+
    <div class="container">
-        <div class="row">
-            <div class="col-6 dashboard-div">
-                <h1 class="userDashboardHeader">My Meds</h1>
-                <a href="/userMed/addUserMed" id="addUserMedButton" class="btn btn-secondary userDashboardButton" style="margin-bottom: 15px"> + Add New Med</a>
+<%--        <div class="row">--%>
+       <div class="column">
+           <%--    My meds accordion--%>
+            <div class="col-5 dashboard-div card shadow-2-strong">
+                <h1 class="userDashboardHeader" style="color:black">My Meds</h1>
+                <a href="/userMed/addUserMed" id="addUserMedButton" class="btn btn-secondary userDashboardButton" style="margin-bottom: 5px"> + Add New Med</a>
                 <div class="accordion" id="medicationAccordion" style="margin-top: 20px; ">
                     <c:forEach items="${meds}" var="med">
                         <div class="accordion-item" >
@@ -25,18 +27,45 @@
                                     <br>
                                     <strong>Special Instructions:</strong> ${med.medication.specialInstructions}
                                     <br>
-                                    <br>
-                                    <a href="/userMed/updateUserMed/${med.id}" class="updateMedLink">Update Med</a>
+                                    <a href="/userMed/updateUserMed/${med.id}" class="updateMedLink">Update Med</a> &nbsp | &nbsp
+                                    <a href="/userMed/deleteUserMed/${med.id}" class="updateMedLink">Delete Med</a>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
                 </div>
             </div>
+          <%--    My previous meds accordion--%>
+           <div class="col-5 dashboard-div card shadow-2-strong">
+               <h1 class="userDashboardHeader" style="color:black">My Previous Meds</h1>
+               <div class="accordion" id="previousMedicationAccordion" style="margin-top: 20px; ">
+                   <c:forEach items="${previousMeds}" var="med">
+                       <div class="accordion-item" >
+                           <h2 class="accordion-header" id="${previousMed.id}">
+                               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${previousMed.id}" aria-expanded="true" aria-controls="collapse${previousMed.id}">
+                                   <strong>${previousMed.medication.name}</strong>
+                               </button>
+                           </h2>
+                           <div id="collapse${previousMed.id}" class="accordion-collapse collapse" aria-labelledby="heading${previousMed.id}" data-bs-parent="#amedicationAccordion">
+                               <div class="accordion-body">
+                                   <strong>Purpose: </strong> ${previousMed.medication.medPurpose}
+                                   <br>
+                                   <strong>Dosage:</strong> ${previousMed.dosage}
+                                   <br>
+                                   <br>
+                                   <strong>Special Instructions:</strong> ${previousMed.medication.specialInstructions}
+                               </div>
+                           </div>
+                       </div>
+                   </c:forEach>
+               </div>
+           </div>
+        </div>
 
 <%--    My logs accordion--%>
-            <div class="col-6">
-                <h1 class="userDashboardHeader">My Logs</h1>
+        <div class="column">
+            <div class="col-5 card shadow-2-strong">
+                <h1 class="userDashboardHeader" style="color:black; display: inline">My Logs</h1>
                 <a href="/log/addUserLog" id="addUserLogButton" class="btn btn-secondary userDashboardButton"> + Add New Log</a>
                 <div class="accordion" id="logAccordion" style="margin-top: 20px">
                     <c:forEach items="${logs}" var="log">
@@ -58,6 +87,7 @@
                 </div>
             </div>
         </div>
+<%--        </div>--%>
     </div>
 
 
