@@ -137,7 +137,7 @@ public class UserMedController {
 
     // Method to update a UserMed record
     @RequestMapping(value = "/userMed/updateUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView updateUserMedSubmit(@Valid AddUserMedFormBean form, BindingResult bindingResult) throws Exception {
+    public ModelAndView updateUserMedSubmit(@Valid UpdateUserMedFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
         //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
@@ -154,7 +154,7 @@ public class UserMedController {
             response.addObject("userMed", userMed);
             log.info(userMed.getId().toString());
 
-            response.setViewName("/userMed/updateUserMed/" + userMed.getId());
+            response.setViewName("userMed/updateUserMed");
             return response;
         }
 
