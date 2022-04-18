@@ -1,5 +1,5 @@
 body {
-    background: url("../images/laurynas-mereckas-1TL8AoEDj_c-unsplash.jpg") no-repeat center center fixed;
+    background: url("../images/backgroundcropped.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -45,20 +45,10 @@ form {
     margin: 30px;
 }
 
-.accordion-button {
-    /*color: black;*/
-    /*background-color: bisque;*/
-}
-
-.accordion-button.collapsed::after {
-     background-color: inherit;
-}
-
 .accordion-button:not(.collapsed) {
     color:inherit;
     background: gray;
     color: #e8e8e8;
-
 }
 
 .accordion-button:not(.collapsed)::after {
