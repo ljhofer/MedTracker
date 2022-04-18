@@ -26,6 +26,9 @@ public class UserMed {
     @Column(name = "frequency")
     private Integer frequency;
 
+    @Column(name = "status")
+    private String status;
+
 
 //     Add foreign key for med_id
     @ToString.Exclude

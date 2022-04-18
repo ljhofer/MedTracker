@@ -8,6 +8,7 @@ import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.User;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
+import medtrackercapstone.medtracker.formbean.DeleteUserMedFormBean;
 import medtrackercapstone.medtracker.formbean.UpdateUserMedFormBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,6 @@ public class UserMedController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
-        //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
 //        Checks for errors/missing fields in user input and displays the errors back to the user
         if (bindingResult.hasErrors() ) {
             for ( ObjectError error : bindingResult.getAllErrors()) {
@@ -141,9 +141,9 @@ public class UserMedController {
         ModelAndView response = new ModelAndView();
 
 //        Checks for errors/missing fields in user input and displays the errors back to the user
-        if (bindingResult.hasErrors() ) {
-            for ( ObjectError error : bindingResult.getAllErrors()) {
-                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                log.info(((FieldError) error).getField() + " " + error.getDefaultMessage());
             }
 
             response.addObject("form", form);
@@ -160,13 +160,14 @@ public class UserMedController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
-        if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
+        if (!StringUtils.equals("anonymousUser", currentPrincipalName)) {
             User user = userDao.findByEmail(currentPrincipalName);
             UserMed userMed = new UserMed();
 
             userMed.setId(form.getId());
             userMed.setFrequency(form.getFrequency());
             userMed.setDosage(form.getDosage());
+            userMed.setStatus("active");
             userMed.setMedication(medicationDao.getById(form.getMedId()));
 
             userMed.setUser(user);
@@ -180,27 +181,27 @@ public class UserMedController {
         return response;
     }
 
+        // Method for setting the page for deleting a med
+        @RequestMapping(value = "/userMed/deleteUserMed/{userMedId}", method = {RequestMethod.GET, RequestMethod.POST} )
+        public ModelAndView deleteUserMed(@PathVariable("userMedId") Integer userMedId) throws Exception {
+            ModelAndView response = new ModelAndView();
+            response.setViewName("userMed/delete/UserMed");
+
+            DeleteUserMedFormBean form = new DeleteUserMedFormBean();
+            response.addObject("form", form);
+
+            // Creates a new userMed and queries the database to populate form
+            UserMed userMed = userMedDao.getById(userMedId);
+
+            // Adds targeted userMed to model
+            response.addObject("userMed", userMed);
+
+            return response;
+        }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Method for deleting a med when a user done taking a medication
 
 
 
