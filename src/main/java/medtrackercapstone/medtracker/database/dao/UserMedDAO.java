@@ -22,8 +22,6 @@ import java.util.List;
 
 public interface UserMedDAO extends JpaRepository<UserMed, Integer> {
 
-//    UserMed findById(@Param("id") Integer id);
-
     List<UserMed> findByUserId (@Param("userId") Integer userId);
 
     @Query("SELECT um.dosage, m.specialInstructions FROM UserMed um JOIN Medication m ON um.medication.id = m.id where um.medication.id= :medId and um.user.id= :userId ")
