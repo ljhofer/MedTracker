@@ -5,7 +5,7 @@
 <container class="container py-5 col-6 card shadow-2-strong" style="margin-top: 30px">
     <form action="/userMed/addUserMedSubmit" id="addMedForm">
 <%--        TODO: Make this userMed id probably--%>
-        <input type="hidden" name="id"  value="${form.id}">
+        <input type="hidden" name="id"  value="${med.id}">
         <h2 style="color:black; margin-left: 0; margin-top: 0;">Add A Med</h2>
         <div class="input-group mb-3" >
             <label class="input-group-text" for="addMedSelect">Med Name</label>
@@ -19,7 +19,7 @@
         </div>
         <c:forEach items="${bindingResult.getFieldErrors('medId')}" var="error">
             <div style="color: orangered;">
-                    Please select a medication.
+                    Medication name is required.
             </div>
         </c:forEach>
 

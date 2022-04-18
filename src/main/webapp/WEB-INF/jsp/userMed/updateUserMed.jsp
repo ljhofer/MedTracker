@@ -27,11 +27,21 @@
                 <option value="24">Every 24 hours</option>
             </select>
         </div>
+        <c:forEach items="${bindingResult.getFieldErrors('frequency')}" var="error">
+            <div style="color: orangered;">
+                Frequency is required.
+            </div>
+        </c:forEach>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="dosageInput">Dosage</span>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="dosage" value="${userMed.dosage}">
         </div>
+        <c:forEach items="${bindingResult.getFieldErrors('dosage')}" var="error">
+            <div style="color: orangered;">
+                Dosage is required.
+            </div>
+        </c:forEach>
 
 <%--        Button for submitting userMed changes--%>
         <div class="col-md-3 mt-4 pt-2">

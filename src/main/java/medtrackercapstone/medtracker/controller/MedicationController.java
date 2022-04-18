@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,29 +44,30 @@ public class MedicationController {
 
     }
 
+
     // Method to add a medication record based on the information populated in the addMedication form
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/medication/addMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView addMedSubmit(@Valid AddMedicationFormBean form) throws Exception {
+    public ModelAndView addMedSubmit(@Valid AddMedicationFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
 
-//        if (bindingResult.hasErrors() ) {
-//
-//            List<String> errorMessages = new ArrayList<>();
-//            for ( ObjectError error : bindingResult.getAllErrors()) {
-//                errorMessages.add(error.getDefaultMessage());
-//                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
-//            }
-//
-//            response.addObject("form", form);
-//
-//            response.addObject("bindingResult", bindingResult);
-//
-//            // because there is one or more error we do not want to process the logic below
-//            // that will creat a new user in the database we want to show the same model that we are already on
-//            response.setViewName("/medication/userMedSubmit");
-//            return response;
-//        }
+//        Checks for errors/missing fields in user input and displays the errors back to the user
+        if (bindingResult.hasErrors() ) {
+
+            List<String> errorMessages = new ArrayList<>();
+            for ( ObjectError error : bindingResult.getAllErrors()) {
+                errorMessages.add(error.getDefaultMessage());
+                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+            }
+
+            response.addObject("form", form);
+
+            response.addObject("bindingResult", bindingResult);
+
+
+            response.setViewName("/medication/addMed");
+            return response;
+        }
 
         // Creates new medication record and sets values equal to those in the form
         Medication medication = new Medication();
@@ -74,11 +78,12 @@ public class MedicationController {
 
         medicationDao.save(medication);
 
-        // TODO: send to individual dashboard page and add proper commenting
-        response.setViewName("redirect:/user/userDashboard");
+        // Redirects user back to search medications page
+        response.setViewName("redirect:/medication/searchMeds" );
 
         return response;
     }
+
 
     // Method to set view on medication search page
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -101,47 +106,6 @@ public class MedicationController {
         return response;
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @RequestMapping(value = "/medication/addUserMed", method = RequestMethod.GET )
-//    public ModelAndView findAll() {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("medication/addUserMed");
-//
-//
-//        AddUserMedFormBean form = new AddUserMedFormBean();
-//        response.addObject("form", form);
-//
-////        // Creates a new array of all medications
-//        List<Medication> meds = new ArrayList<>();
-////
-////        // Queries the database for all medications
-//        meds = medicationDao.findAll();
-////
-////        // Adds med list to model
-//        response.addObject("meds", meds);
-//
-//        return response;
-//
-//    }
-
-
 
 
 }

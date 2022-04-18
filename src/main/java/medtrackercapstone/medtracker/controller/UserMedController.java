@@ -142,17 +142,21 @@ public class UserMedController {
 
         //        TODO: Decide about displaying these errors or figure out how to use Bootstrap validation
 //        Checks for errors/missing fields in user input and displays the errors back to the user
-//        if (bindingResult.hasErrors() ) {
-//            for ( ObjectError error : bindingResult.getAllErrors()) {
-//                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
-//            }
-//
-//            response.addObject("form", form);
-//            response.addObject("bindingResult", bindingResult);
-//
-//            response.setViewName("/userMed/updateUserMed");
-//            return response;
-//        }
+        if (bindingResult.hasErrors() ) {
+            for ( ObjectError error : bindingResult.getAllErrors()) {
+                log.info( ((FieldError) error).getField()  + " " + error.getDefaultMessage() );
+            }
+
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            UserMed userMed = userMedDao.getById(form.getId());
+            response.addObject("userMed", userMed);
+            log.info(userMed.getId().toString());
+
+            response.setViewName("/userMed/updateUserMed/" + userMed.getId());
+            return response;
+        }
 
         // If user is known creates new userMed record and sets values equal to those in the form
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
