@@ -185,7 +185,7 @@ public class UserMedController {
         @RequestMapping(value = "/userMed/deleteUserMed/{userMedId}", method = {RequestMethod.GET, RequestMethod.POST} )
         public ModelAndView deleteUserMed(@PathVariable("userMedId") Integer userMedId) throws Exception {
             ModelAndView response = new ModelAndView();
-            response.setViewName("userMed/delete/UserMed");
+            response.setViewName("userMed/deleteUserMed");
 
             DeleteUserMedFormBean form = new DeleteUserMedFormBean();
             response.addObject("form", form);
@@ -195,6 +195,8 @@ public class UserMedController {
 
             // Adds targeted userMed to model
             response.addObject("userMed", userMed);
+
+            log.info(userMed.toString());
 
             return response;
         }
