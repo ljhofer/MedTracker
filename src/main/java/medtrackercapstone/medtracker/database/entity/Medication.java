@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
+@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "medications")
@@ -21,12 +22,15 @@ public class Medication {
     @Column(name = "id")
     private Integer id;
 
+    @NonNull
     @Column(name = "name")
     private String name;
 
+    @NonNull
     @Column(name = "med_purpose")
     private String medPurpose;
 
+    @NonNull
     @Column(name = "special_instructions")
     private String specialInstructions;
 

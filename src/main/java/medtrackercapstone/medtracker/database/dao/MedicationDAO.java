@@ -10,6 +10,4 @@ public interface MedicationDAO extends JpaRepository<Medication, Integer> {
 
     List<Medication> findByNameContaining(@Param("name")String name);
 
-    List<Medication> findAll();
-
 }

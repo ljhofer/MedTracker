@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,19 +25,21 @@ public class User {
     @Column(name = "id")
     private Integer id;
 
+    @NonNull
     @Column(name = "email")
     private String email;
 
+    @NonNull
     @Column(name = "name")
     private String name;
 
+    @NonNull
     @Column(name = "password")
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY )
     private List<UserMed> userMeds = new ArrayList();
 
-//    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Log> logs;
 
