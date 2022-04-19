@@ -136,10 +136,12 @@ public class UserController {
 
         // Creates a new array of all medications and logs
         List<UserMed> meds = new ArrayList<>();
+        List<UserMed> previousMeds = new ArrayList<>();
         List<Log> logs = new ArrayList<>();
 
         // Queries the database for all medications and logs
-        meds = userMedDao.findByUserId(userId);
+        meds = userMedDao.findByIdAndActive(userId);
+        previousMeds = userMedDao.findByIdAndInactive(userId);
         logs = logDao.findByUserId(userId);
 
         // Reverses the log list to print most recent first
@@ -147,6 +149,7 @@ public class UserController {
 
         // Adds med list to model
         response.addObject("meds", meds);
+        response.addObject("previousMeds", previousMeds);
         response.addObject("logs", logs);
 
         return response;

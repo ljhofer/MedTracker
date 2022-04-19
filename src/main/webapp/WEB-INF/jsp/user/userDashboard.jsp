@@ -39,7 +39,7 @@
            <div class="col-5 dashboard-div card shadow-2-strong">
                <h1 class="userDashboardHeader" style="color:black">My Previous Meds</h1>
                <div class="accordion" id="previousMedicationAccordion" style="margin-top: 20px; ">
-                   <c:forEach items="${previousMeds}" var="med">
+                   <c:forEach items="${previousMeds}" var="previousMed">
                        <div class="accordion-item" >
                            <h2 class="accordion-header" id="${previousMed.id}">
                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${previousMed.id}" aria-expanded="true" aria-controls="collapse${previousMed.id}">
@@ -48,12 +48,7 @@
                            </h2>
                            <div id="collapse${previousMed.id}" class="accordion-collapse collapse" aria-labelledby="heading${previousMed.id}" data-bs-parent="#amedicationAccordion">
                                <div class="accordion-body">
-                                   <strong>Purpose: </strong> ${previousMed.medication.medPurpose}
-                                   <br>
                                    <strong>Dosage:</strong> ${previousMed.dosage}
-                                   <br>
-                                   <br>
-                                   <strong>Special Instructions:</strong> ${previousMed.medication.specialInstructions}
                                </div>
                            </div>
                        </div>
