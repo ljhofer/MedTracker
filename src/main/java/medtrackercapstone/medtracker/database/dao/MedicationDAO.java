@@ -12,8 +12,4 @@ public interface MedicationDAO extends JpaRepository<Medication, Integer> {
 
     List<Medication> findAll();
 
-
-
-
-
 }

@@ -7,9 +7,18 @@ body {
 
 }
 
+/*Styling for index page*/
 h1 {
     color:black;
 }
+
+.index-div {
+    background-image: url("../images/floor-tile.png");
+    background-repeat: repeat;
+    padding: 50px;
+    border-radius: 15px;
+}
+
 
 form {
     padding-left: 30px;
