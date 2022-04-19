@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,26 +22,24 @@ public class UserMed {
     @Column(name = "id")
     private Integer id;
 
+    @NonNull
     @Column(name = "dosage")
     private String dosage;
 
+    @NonNull
     @Column(name = "frequency")
     private Integer frequency;
 
+    @NonNull
     @Column(name = "status")
     private String status;
 
-
-//     Add foreign key for med_id
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)
     @JoinColumn( name = "med_id", nullable = false)
     private Medication medication;
 
-
-
-//     Add foreign key for user_id
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)
