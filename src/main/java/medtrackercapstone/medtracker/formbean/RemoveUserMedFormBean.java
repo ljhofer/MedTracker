@@ -9,14 +9,14 @@ import javax.validation.constraints.NotBlank;
 @ToString
 @Getter
 @Setter
-public class DeleteUserMedFormBean {
+public class RemoveUserMedFormBean {
 
     private Integer id;
 
     private Integer medId;
 
-    private Integer frequency;
-
-    @NotBlank(message = "Dosage is required")
     private String dosage;
+
+    @NotBlank
+    private String confirmRemove;
 }

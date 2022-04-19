@@ -8,7 +8,7 @@ import medtrackercapstone.medtracker.database.entity.Medication;
 import medtrackercapstone.medtracker.database.entity.User;
 import medtrackercapstone.medtracker.database.entity.UserMed;
 import medtrackercapstone.medtracker.formbean.AddUserMedFormBean;
-import medtrackercapstone.medtracker.formbean.DeleteUserMedFormBean;
+import medtrackercapstone.medtracker.formbean.RemoveUserMedFormBean;
 import medtrackercapstone.medtracker.formbean.UpdateUserMedFormBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -102,6 +101,7 @@ public class UserMedController {
 
             userMed.setFrequency(form.getFrequency());
             userMed.setDosage(form.getDosage());
+            userMed.setStatus("active");
             userMed.setMedication(medicationDao.getById(form.getMedId()));
 
             userMed.setUser(user);
@@ -181,30 +181,72 @@ public class UserMedController {
         return response;
     }
 
-        // Method for setting the page for deleting a med
-        @RequestMapping(value = "/userMed/deleteUserMed/{userMedId}", method = {RequestMethod.GET, RequestMethod.POST} )
-        public ModelAndView deleteUserMed(@PathVariable("userMedId") Integer userMedId) throws Exception {
-            ModelAndView response = new ModelAndView();
-            response.setViewName("userMed/deleteUserMed");
 
-            DeleteUserMedFormBean form = new DeleteUserMedFormBean();
+        // Method for setting the page for removing a med
+    @RequestMapping(value = "/userMed/removeUserMed/{userMedId}", method = {RequestMethod.GET, RequestMethod.POST} )
+    public ModelAndView removeUserMed(@PathVariable("userMedId") Integer userMedId) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("userMed/removeUserMed");
+
+        RemoveUserMedFormBean form = new RemoveUserMedFormBean();
+        response.addObject("form", form);
+
+        // Creates a new userMed and queries the database to populate form
+        UserMed userMed = userMedDao.getById(userMedId);
+
+        // Adds targeted userMed to model
+        response.addObject("userMed", userMed);
+
+        log.info(userMed.toString());
+
+        return response;
+    }
+
+
+
+        // Method for removing a med when a user done taking a medication
+    @RequestMapping(value = "/userMed/removeUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView removeUserMedSubmit(@Valid RemoveUserMedFormBean form, BindingResult bindingResult) throws Exception {
+        ModelAndView response = new ModelAndView();
+
+//        Checks for errors/missing fields in user input and displays the errors back to the user
+        if (bindingResult.hasErrors()) {
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                log.info(((FieldError) error).getField() + " " + error.getDefaultMessage());
+            }
+
             response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
 
-            // Creates a new userMed and queries the database to populate form
-            UserMed userMed = userMedDao.getById(userMedId);
-
-            // Adds targeted userMed to model
+            UserMed userMed = userMedDao.getById(form.getId());
             response.addObject("userMed", userMed);
 
-            log.info(userMed.toString());
-
+            response.setViewName("userMed/removeUserMed");
             return response;
         }
 
+        // If user is known creates new userMed record and sets values equal to those in the form
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
+        if (!StringUtils.equals("anonymousUser", currentPrincipalName)) {
+            User user = userDao.findByEmail(currentPrincipalName);
+            UserMed userMed = new UserMed();
 
-        // Method for deleting a med when a user done taking a medication
+            userMed.setId(form.getId());
+            userMed.setDosage(form.getDosage());
+            userMed.setStatus("inactive");
+            userMed.setMedication(medicationDao.getById(form.getMedId()));
 
+            userMed.setUser(user);
 
+            userMedDao.save(userMed);
+
+            // Redirects user to their dashboard page
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
+        }
+
+        return response;
+    }
 
 }

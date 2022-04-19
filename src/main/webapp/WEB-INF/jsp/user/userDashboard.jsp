@@ -28,7 +28,7 @@
                                     <strong>Special Instructions:</strong> ${med.medication.specialInstructions}
                                     <br>
                                     <a href="/userMed/updateUserMed/${med.id}" class="updateMedLink">Update Med</a> &nbsp | &nbsp
-                                    <a href="/userMed/deleteUserMed/${med.id}" class="updateMedLink">Remove Med</a>
+                                    <a href="/userMed/removeUserMed/${med.id}" class="updateMedLink">Remove Med</a>
                                 </div>
                             </div>
                         </div>

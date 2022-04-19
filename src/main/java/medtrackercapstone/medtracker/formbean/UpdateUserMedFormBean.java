@@ -19,4 +19,5 @@ public class UpdateUserMedFormBean {
 
     @NotBlank(message = "Dosage is required")
     private String dosage;
+
 }
