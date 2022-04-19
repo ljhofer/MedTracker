@@ -15,6 +15,8 @@ public class RemoveUserMedFormBean {
 
     private Integer medId;
 
+    private Integer frequency;
+
     private String dosage;
 
     @NotBlank

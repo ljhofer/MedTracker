@@ -5,6 +5,7 @@
 <container class="container py-5 col-6 card shadow-2-strong mx-auto" style="margin-top: 30px">
     <form action="/userMed/removeUserMedSubmit" id="removeUserMedForm">
         <input type="hidden" name="id"  value="${userMed.id}">
+        <input type="hidden" name="frequency"  value="${userMed.frequency}">
         <input type="hidden" name="medId"  value="${userMed.medication.id}">
         <h2 style="color:black; margin-left: 0; margin-top: 0;">Remove A Med</h2>
         <div class="input-group mb-3">

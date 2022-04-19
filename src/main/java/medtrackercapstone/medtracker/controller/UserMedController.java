@@ -203,7 +203,6 @@ public class UserMedController {
     }
 
 
-
         // Method for removing a med when a user done taking a medication
     @RequestMapping(value = "/userMed/removeUserMedSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView removeUserMedSubmit(@Valid RemoveUserMedFormBean form, BindingResult bindingResult) throws Exception {
@@ -235,6 +234,7 @@ public class UserMedController {
 
             userMed.setId(form.getId());
             userMed.setDosage(form.getDosage());
+            userMed.setFrequency(form.getFrequency());
             userMed.setStatus("inactive");
             userMed.setMedication(medicationDao.getById(form.getMedId()));
 
