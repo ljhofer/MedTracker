@@ -34,12 +34,14 @@ public class UserMed {
     @Column(name = "status")
     private String status;
 
+    @NonNull
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)
     @JoinColumn( name = "med_id", nullable = false)
     private Medication medication;
 
+    @NonNull
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne( fetch = FetchType.LAZY, optional = false)

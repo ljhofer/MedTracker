@@ -24,7 +24,7 @@ public class MedicationDAOTest {
     Medication medication;
 
     @BeforeEach
-    void name() { medication = new Medication( "Aspirin", "Pain reliever, Clot prevention", "Drink a full glass of water with each dose." );}
+    void name() { medication = new Medication( "Aspirin", "Pain reliever, Clot prevention", "Drink a full glass of water with each dose." ); }
 
     @Test
     public void findByNameContainingTest() {
