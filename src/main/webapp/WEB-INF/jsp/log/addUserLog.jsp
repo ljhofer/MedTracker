@@ -33,7 +33,7 @@
             <div class="input-group mb-3" >
                 <label class="input-group-text" for="medicationSelect">My Medications</label>
                 <select class="form-select" name="medId" id="medicationSelect">
-                    <option selected value="">Choose medication...</option>
+                    <option selected label=" Choose medication..." ></option>
                     <c:forEach items="${meds}" var="med">
                     <option value="${med.medication.id}" name="medId">${med.medication.name}</option>
                     </c:forEach>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-md-3 mt-4 pt-2">
-                <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
+                <input class="btn btn-dark btn-md" type="submit" value="Submit" />
             </div>
         </form>
         <h2 ></h2>

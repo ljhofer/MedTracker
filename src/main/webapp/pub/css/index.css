@@ -7,22 +7,33 @@ body {
 
 }
 
-/*Styling for index page*/
-h1 {
-    color:black;
-}
-
-
 form {
     padding-left: 30px;
     padding-right: 30px;
 }
+
+/*Styling for login page*/
+.redirectLink {
+    color: black;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    text-underline: none;
+    text-align: end;
+}
+
+.redirectLink:hover {
+    color:  #cc7452;
+    font-weight: bolder;
+}
+
 
 /*Styling for cards*/
 .card {
     margin-top: 25px;
     margin-right: 15px;
     margin-left: 15px;
+    background-image: url("../images/45degreee_fabric.webp") ;
+
 }
 
 /*Styling for buttons*/
@@ -33,7 +44,7 @@ form {
 }
 
 .btn:hover {
-    background-color: orangered;
+    background-color: #cc7452;
     font-weight: bolder;
 }
 
@@ -90,16 +101,14 @@ form {
 
 .updateMedLink {
     color: black;
-    text-weight: bolder;
+    font-weight: bolder;
     text-decoration: none;
     text-underline: none;
     text-align: end;
 }
 
 .updateMedLink:hover {
-    color: black;
-    outline-width: 1px;
-    outline-color: orangered;
+    color:  #cc7452;
     font-weight: bolder;
 }
 

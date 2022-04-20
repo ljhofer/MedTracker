@@ -3,10 +3,10 @@
 <jsp:include page="../include/header.jsp" />
 
 
-<container class="container py-5 col-9 card shadow-2-strong" style="margin-top: 30px">
+<container class="container py-5 col-9 card shadow-2-strong mx-auto" style="margin-top: 30px">
     <form action="/medication/searchMeds" id="searchMedForm">
         <h2 style="color:black; margin-left: 0; margin-top: 0; margin-right: 20px; margin-bottom: 20px; display: inline">Search Medications</h2>
-        <a href="/medication/addMed" id="adminAddMedButton" class="btn btn-secondary adminAddMedButton" style="margin-bottom: 15px"> + Add New Med</a>
+        <a href="/medication/addMed" id="adminAddMedButton" class="btn btn-dark adminAddMedButton" style="margin-bottom: 15px"> + Add New Med</a>
         <br>
         <div class="input-group mb-3" style="margin-top: 20px">
             <span class="input-group-text" id="nameInput">Search Medications</span>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Search" />
+            <input class="btn btn-dark btn-md" type="submit" value="Search" />
         </div>
         <br>
 

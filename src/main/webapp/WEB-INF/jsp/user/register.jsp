@@ -5,16 +5,15 @@
 <h1 id="title"  >MedTracker</h1>
 <h2 id="sub-title">Easing the pain of medication management.</h2>
 
-<section >
-    <div class="container py-5">
+<section>
+    <div class="container">
         <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-lg-9 col-xl-7">
+            <div class="col-6">
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                    <div class="card-body p-4 p-md-5">
-                        <h1 class="mb-4 pb-2 pb-md-0 mb-md-5">Register New User</h1>
-
+                    <div class="card-body p-4">
                         <form id="registerForm" class="needs-validation" action="/user/registerSubmit" novalidate>
                             <input type="hidden" name="id"  value="${form.id}">
+                            <h3 class="pb-3" style="padding-top: 10px">Register New User</h3>
                             <div class="row">
                                 <!-- Name -->
                                 <div class="col-md-6 mb-4">
@@ -53,13 +52,10 @@
 
                             <div class="row">
                                 <!-- Password -->
-                                <div class="col-md-6 mb-2 pb-2">
+                                <div class="col-md-6 pb-2">
                                     <div class="form-outline">
                                         <input type="password" id="passwordInput" class="form-control form-control-lg" name="password" value="${form.password}" required />
                                         <label class="form-label" for="passwordInput">Password</label>
-<%--                                        <div class="invalid-feedback">--%>
-<%--                                            Please enter a password.--%>
-<%--                                        </div>--%>
                                         <c:forEach items="${bindingResult.getFieldErrors('password')}" var="error">
                                             <div style="color: orangered;">
                                                 ${error.getDefaultMessage()}
@@ -69,7 +65,7 @@
                                 </div>
 
                                 <!-- Confirm Password -->
-                                <div class="col-md-6 mb-2 pb-2">
+                                <div class="col-md-6 pb-2">
                                     <div class="form-outline">
                                         <input type="password" onkeyup="check();" id="confirmPasswordInput" class="form-control form-control-lg" name="confirmPassword" value="${form.confirmPassword}" required/>
                                         <label class="form-label" for="confirmPasswordInput">Confirm Password</label>
@@ -81,14 +77,14 @@
                                                     Password confirm is required.
                                             </div>
                                         </c:forEach>
-                                        <div class="col-12 m-4 pt-2" id="message"></div>
+                                        <div class="col-12 pt-2" id="message"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 mt-4 pt-2">
-                                <input class="btn btn-secondary btn-md" type="submit" value="Sign Up" />
+                            <div class="col-4 mt-2 pt-2">
+                                <input class="btn btn-dark btn-md" type="submit" value="Sign Up" />
                             </div>
-                            <a href="/login/login" id="sendToRegisterButton" class="btn btn-secondary btn-md userDashboardButton" style="margin-bottom: 15px"> Log In Instead </a>
+                            <a href="/login/login" id="sendToRegisterButton" class="redirectLink" style="margin-bottom: 15px"> <strong>Already have an account?</strong> Log in instead </a>
                         </form>
                     </div>
                 </div>

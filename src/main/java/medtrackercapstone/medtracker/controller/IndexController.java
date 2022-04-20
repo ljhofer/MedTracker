@@ -36,6 +36,8 @@ public class IndexController {
             response.addObject(user);
             response.setViewName("redirect:/user/userDashboard/" + user.getId());
 
+        }  else {
+            response.setViewName("redirect:/login/login");
         }
 
         return response;

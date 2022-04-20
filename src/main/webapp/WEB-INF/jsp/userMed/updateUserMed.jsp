@@ -2,7 +2,7 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<container class="container py-5 col-6 card shadow-2-strong" style="margin-top: 30px">
+<container class="container py-5 col-6 card shadow-2-strong mx-auto" style="margin-top: 30px">
     <form action="/userMed/updateUserMedSubmit" id="updateUserMedForm">
         <input type="hidden" name="id"  value="${userMed.id}">
         <input type="hidden" name="medId"  value="${userMed.medication.id}">
@@ -45,7 +45,7 @@
 
 <%--        Button for submitting userMed changes--%>
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Update Med" />
+            <input class="btn btn-dark btn-md" type="submit" value="Update Med" />
         </div>
 
     </form>

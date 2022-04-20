@@ -104,7 +104,7 @@ public class UserController {
         log.info(form.toString());
 
         // Redirects user to their dashboard page upon registration
-        response.setViewName("redirect:/user/userDashboard/" + user.getId());
+        response.setViewName("redirect:/login/login");
 
         return response;
     }
@@ -123,7 +123,7 @@ public class UserController {
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
             response.addObject("user", user);
-            response.setViewName("redirect:/login/login");
+            response.setViewName("redirect:/user/userDashboard/" + user.getId());
         }
 
         return response;
@@ -141,11 +141,13 @@ public class UserController {
         List<UserMed> meds = new ArrayList<>();
         List<UserMed> previousMeds = new ArrayList<>();
         List<Log> logs = new ArrayList<>();
+        User user = new User();
 
         // Queries the database for all medications and logs
         meds = userMedDao.findByIdAndActive(userId);
         previousMeds = userMedDao.findByIdAndInactive(userId);
         logs = logDao.findByUserId(userId);
+        user = userDao.getById(userId);
 
         // Reverses the log list to print most recent first
         logs.sort((log1, log2) -> log2.getCreatedOn().compareTo(log1.getCreatedOn()));
@@ -154,6 +156,7 @@ public class UserController {
         response.addObject("meds", meds);
         response.addObject("previousMeds", previousMeds);
         response.addObject("logs", logs);
+        response.addObject("user", user);
 
         return response;
 

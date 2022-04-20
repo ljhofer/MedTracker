@@ -53,7 +53,7 @@
         </c:forEach>
 
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
+            <input class="btn btn-dark btn-md" type="submit" value="Submit" />
         </div>
 
     </form>

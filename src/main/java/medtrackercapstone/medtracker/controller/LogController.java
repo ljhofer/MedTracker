@@ -65,7 +65,7 @@ public class LogController {
         // If user is known then a new array of current user's meds is created and added to the form
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
-            List<UserMed> meds = userMedDao.findByUserId(user.getId());
+            List<UserMed> meds = userMedDao.findByIdAndActive(user.getId());
             response.addObject("meds", meds);
         }
 
@@ -98,10 +98,11 @@ public class LogController {
                 User user = userDao.findByEmail(currentPrincipalName);
                 List<UserMed> meds = userMedDao.findByUserId(user.getId());
                 response.addObject("meds", meds);
+
+                response.setViewName("log/addUserLog");
+                return response;
             }
 
-            response.setViewName("/log/addUserLog");
-            return response;
         }
 
         // Creates new userLog record and sets values equal to those in the form

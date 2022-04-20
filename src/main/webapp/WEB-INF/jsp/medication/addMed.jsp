@@ -2,9 +2,9 @@
 
 <jsp:include page="../include/header.jsp" />
 
-<container class="container py-5 col-9 card shadow-2-strong" style="margin-top: 30px">
+<container class="container py-5 col-9 card shadow-2-strong mx-auto" style="margin-top: 30px">
     <form action="/medication/addMedSubmit" id="addMedForm">
-        <h2 style="color:black; margin-left: 0; margin-top: 0;">Add a Medication to the Database</h2>
+        <h2 style="color:black; margin-left: 0; margin-bottom: 20px;">Add a Medication to the Database</h2>
 
 
         <div class="input-group mb-3">
@@ -41,7 +41,7 @@
         </c:forEach>
 
         <div class="col-md-3 mt-4 pt-2">
-            <input class="btn btn-secondary btn-md" type="submit" value="Submit" />
+            <input class="btn btn-dark btn-md" type="submit" value="Submit" />
         </div>
 
     </form>
