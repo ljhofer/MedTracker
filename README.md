@@ -18,8 +18,7 @@ I have created an application that helps users track their medications and then 
 ## Usage
 To start using the application user should create an account by clicking on the "Sign Up" button on the homepage. 
 
-
-![Screen shot of home page](./public/images/granim.JPG)
+![Screen shot of home page](/src/main/webapp/pub/images/screenshot.jpg)
 
 ## License
 This project licensed under the [MIT License](https://opensource.org/licenses/MIT).

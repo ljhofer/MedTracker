@@ -28,6 +28,8 @@
                                         <br>
                                         <strong>Dosage:</strong> ${med.dosage}
                                         <br>
+                                        <strong>Frequency:</strong> ${med.frequency}
+                                        <br>
                                         <strong>Special Instructions:</strong> ${med.medication.specialInstructions}
                                         <br>
                                         <br>

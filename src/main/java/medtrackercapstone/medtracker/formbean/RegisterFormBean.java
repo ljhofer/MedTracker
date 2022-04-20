@@ -17,8 +17,6 @@ public class RegisterFormBean {
     private Integer id;
 
     @NotBlank(message = "Email is required")
-//    Add in later
-//    @EmailUnique(message = "Email is already in use.")
     @Email(message = "Not a valid email format")
     private String email;
 
@@ -33,7 +31,7 @@ public class RegisterFormBean {
     private String confirmPassword;
 
 
-//    TODO: Add in code for dropdown
+
 
 
 }
