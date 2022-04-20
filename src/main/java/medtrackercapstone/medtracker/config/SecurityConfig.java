@@ -28,22 +28,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-//                TODO: finalize these permissions
-                .antMatchers("/pub/**", "/error/**", "/login/**", "/user/**").permitAll()
-                .antMatchers("/admin/**").authenticated()
-                .and()
+                    .antMatchers("/pub/**", "/error/**", "/login/**", "/user/register").permitAll()
+                    .antMatchers("/admin/**", "/user/**").authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login/login")
-                .loginProcessingUrl("/login/loginSubmit")
-                .defaultSuccessUrl("/index")
-                .and()
+                    .loginPage("/login/login")
+                    .loginProcessingUrl("/login/loginSubmit")
+                    .defaultSuccessUrl("/index")
+                    .and()
                 .logout()
-                .invalidateHttpSession(true)
-                .logoutUrl("/login/logout")
-                .logoutSuccessUrl("/index")
-                .and()
+                    .invalidateHttpSession(true)
+                    .logoutUrl("/login/logout")
+                    .logoutSuccessUrl("/index")
+                    .and()
                 .exceptionHandling()
-                .accessDeniedPage("/error/404");
+                    .accessDeniedPage("/error/404");
     }
 
     @Bean(name="passwordEncoder")

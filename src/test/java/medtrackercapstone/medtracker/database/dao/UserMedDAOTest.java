@@ -69,7 +69,6 @@ public class UserMedDAOTest {
     @Order(2)
     public void getUserMedTest() {
         UserMed expected = userMedDao.getById(1);
-        log.info(expected.toString());
         assertEquals(expected.getId(), 1);
 
     }

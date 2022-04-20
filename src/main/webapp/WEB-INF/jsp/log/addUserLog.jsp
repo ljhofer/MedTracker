@@ -27,7 +27,7 @@
 </script>
 
 
-<div class="container py-5 col-9 card shadow-2-strong" style="margin-top:30px">
+<div class="container py-5 col-9 card shadow-2-strong mx-auto" style="margin-top:30px">
     <h2 style="color:black; margin-left: 27px; margin-top: 0; margin-bottom: 25px;">Log Your Meds</h2>
         <form action="/log/addUserLogSubmit" id="addLogForm">
             <div class="input-group mb-3" >
