@@ -25,8 +25,10 @@ public class UserMedDAOTest {
     @Autowired
     private UserMedDAO userMedDao;
 
+    @Autowired
     private UserDAO userDao;
 
+    @Autowired
     private MedicationDAO medicationDao;
 
     UserMed userMed;
@@ -39,12 +41,10 @@ public class UserMedDAOTest {
     void name() {
 
         user = new User("ljhofer@gmail.com", "Laura", "asdfghjk1");
-        userDao.save(user);
 
         medication = new Medication( "Aspirin", "Pain reliever, Clot prevention", "Drink a full glass of water with each dose." );
-        medicationDao.save(medication);
 
-        userMed = new UserMed("80 mg", 24, "active", medicationDao.getById(medication.getId()), userDao.getById(user.getId()));
+        userMed = new UserMed("80 mg", 24, "active", medication, user);
 
     }
 
@@ -53,6 +53,8 @@ public class UserMedDAOTest {
     @Order(1)
     @Rollback(value=false)
     public void createUserMedTest() {
+        userDao.save(user);
+        medicationDao.save(medication);
         userMedDao.save(userMed);
         UserMed expected = userMedDao.getById(userMed.getId());
         assertEquals(expected.getDosage(), "80 mg");
@@ -66,8 +68,9 @@ public class UserMedDAOTest {
     @Test
     @Order(2)
     public void getUserMedTest() {
-        UserMed expected = userMedDao.getById(4);
-        assertEquals(expected.getId(), 4);
+        UserMed expected = userMedDao.getById(1);
+        log.info(expected.toString());
+        assertEquals(expected.getId(), 1);
 
     }
 
@@ -76,9 +79,7 @@ public class UserMedDAOTest {
     @Test
     @Order(3)
     public void updateUserMedTest() {
-        userMedDao.save(userMed);
-
-        userMed = userMedDao.getById(userMed.getId());
+        UserMed userMed = userMedDao.getById(1);
 
         userMed.setDosage("400 mg");
 
@@ -93,15 +94,13 @@ public class UserMedDAOTest {
     @Test
     @Order(4)
     public void removeUserMedTest() {
-        userMedDao.save(userMed);
-
-        userMed = userMedDao.getById(userMed.getId());
+        userMed = userMedDao.getById(1);
 
         userMed.setStatus("inactive");
 
         userMedDao.save(userMed);
 
-        assertEquals(userMed.getDosage(), "inactive");
+        assertEquals(userMed.getStatus(), "inactive");
 
     }
 

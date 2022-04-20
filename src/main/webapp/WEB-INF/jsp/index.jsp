@@ -1,6 +1,6 @@
 <jsp:include page="include/header.jsp" />
 
-<h1 id="title" style="margin-top: 150px" >MedTracker</h1>
+<h1 id="title" style="margin-top: 100px" >MedTracker</h1>
 <h2 id="sub-title">Easing the pain of medication management.</h2>
 <h3>${user}</h3>
 
