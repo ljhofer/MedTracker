@@ -8,6 +8,7 @@ I have created an application that helps users track their medications and then 
 ## Table of Contents
 
 - [Usage](#usage)
+- [Database](#database)
 - [License](#license)
 - [Links](#links)
 - [Technologies](#technologies)
@@ -16,9 +17,14 @@ I have created an application that helps users track their medications and then 
 
 
 ## Usage
-To start using the application user should create an account by clicking on the "Sign Up" button on the homepage. 
+To start using the application, the user should create an account by clicking on the "Sign Up" button on the homepage. 
 
-![Screen shot of home page](/src/main/webapp/pub/images/screenshot.jpg)
+![Screen shot of home page](src/main/webapp/pub/images/screenshot.jpg)
+
+## Database
+This is an ER diagram of the database structure:
+
+![Screen shot of ER diagram](src/main/webapp/pub/images/erdiagram.jpg)
 
 ## License
 This project licensed under the [MIT License](https://opensource.org/licenses/MIT).
