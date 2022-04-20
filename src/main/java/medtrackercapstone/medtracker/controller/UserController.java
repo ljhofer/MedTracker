@@ -7,6 +7,7 @@ import medtrackercapstone.medtracker.database.entity.*;
 import medtrackercapstone.medtracker.formbean.RegisterFormBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -110,6 +111,7 @@ public class UserController {
 
 
     // Method to redirect user to their dashboard when they click on MyDashboard in the nav bar
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @RequestMapping(value = "/user/userDashboard", method = RequestMethod.GET )
     public ModelAndView userDashboard() {
         ModelAndView response = new ModelAndView();
@@ -121,7 +123,7 @@ public class UserController {
         if(!StringUtils.equals("anonymousUser", currentPrincipalName)){
             User user = userDao.findByEmail(currentPrincipalName);
             response.addObject("user", user);
-            response.setViewName("redirect:/user/userDashboard/" + user.getId());
+            response.setViewName("redirect:/login/login");
         }
 
         return response;
@@ -129,6 +131,7 @@ public class UserController {
 
 
     // Method to populate meds on userDashboard page
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @RequestMapping(value = "/user/userDashboard/{userId}", method = RequestMethod.GET )
     public ModelAndView setUserDashboard(@PathVariable("userId") Integer userId) {
         ModelAndView response = new ModelAndView();

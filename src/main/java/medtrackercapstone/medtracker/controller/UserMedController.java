@@ -12,6 +12,7 @@ import medtrackercapstone.medtracker.formbean.RemoveUserMedFormBean;
 import medtrackercapstone.medtracker.formbean.UpdateUserMedFormBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
 public class UserMedController {
 
     @Autowired
