@@ -12,13 +12,6 @@ h1 {
     color:black;
 }
 
-.index-div {
-    background-image: url("../images/white-waves.webp");
-    background-repeat: repeat;
-    padding: 50px;
-    border-radius: 15px;
-}
-
 
 form {
     padding-left: 30px;
@@ -47,7 +40,7 @@ form {
 #title {
     color: black;
     text-align: center;
-    margin-top: 35px;
+    margin-top: 20px;
     font-size: 100px;
     font-family: 'Permanent Marker', cursive;
 }

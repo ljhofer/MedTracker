@@ -27,7 +27,7 @@ public class IndexController {
     @RequestMapping(value= "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView response = new ModelAndView();
-        response.setViewName("index");
+        response.setViewName("login/loginForm");
 
         String username = authentication.getAuthentication();
         User user = userDao.findByEmail(username);

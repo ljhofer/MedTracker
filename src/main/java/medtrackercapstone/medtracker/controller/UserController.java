@@ -148,7 +148,7 @@ public class UserController {
         logs = logDao.findByUserId(userId);
 
         // Reverses the log list to print most recent first
-        Collections.reverse(logs);
+        logs.sort((log1, log2) -> log2.getCreatedOn().compareTo(log1.getCreatedOn()));
 
         // Adds med list to model
         response.addObject("meds", meds);
@@ -160,6 +160,5 @@ public class UserController {
     }
 
 
-    }
-
+}
 
