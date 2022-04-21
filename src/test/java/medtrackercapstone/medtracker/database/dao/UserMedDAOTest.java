@@ -41,21 +41,21 @@ public class UserMedDAOTest {
     void name() {
 
         user = new User("ljhofer@gmail.com", "Laura", "asdfghjk1");
+        userDao.save(user);
 
         medication = new Medication( "Aspirin", "Pain reliever, Clot prevention", "Drink a full glass of water with each dose." );
+        medicationDao.save(medication);
 
         userMed = new UserMed("80 mg", 24, "active", medication, user);
+        userMedDao.save(userMed);
 
     }
 
     // Test for creating a userMed
     @Test
     @Order(1)
-    @Rollback(value=false)
+    @Rollback(value = false)
     public void createUserMedTest() {
-        userDao.save(user);
-        medicationDao.save(medication);
-        userMedDao.save(userMed);
         UserMed expected = userMedDao.getById(userMed.getId());
         assertEquals(expected.getDosage(), "80 mg");
         assertEquals(expected.getFrequency(), 24);
@@ -68,8 +68,8 @@ public class UserMedDAOTest {
     @Test
     @Order(2)
     public void getUserMedTest() {
-        UserMed expected = userMedDao.getById(1);
-        assertEquals(expected.getId(), 1);
+        UserMed expected = userMedDao.getById(userMed.getId());
+        assertEquals(expected, userMed);
 
     }
 
@@ -78,8 +78,6 @@ public class UserMedDAOTest {
     @Test
     @Order(3)
     public void updateUserMedTest() {
-        UserMed userMed = userMedDao.getById(1);
-
         userMed.setDosage("400 mg");
 
         userMedDao.save(userMed);
@@ -93,8 +91,6 @@ public class UserMedDAOTest {
     @Test
     @Order(4)
     public void removeUserMedTest() {
-        userMed = userMedDao.getById(1);
-
         userMed.setStatus("inactive");
 
         userMedDao.save(userMed);
