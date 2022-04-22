@@ -52,8 +52,9 @@ form {
     color: black;
     text-align: center;
     margin-top: 20px;
-    font-size: 100px;
-    font-family: 'Permanent Marker', cursive;
+    font-size: 120px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bolder;
 }
 
 #sub-title {
