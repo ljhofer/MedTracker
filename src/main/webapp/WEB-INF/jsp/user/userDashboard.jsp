@@ -28,7 +28,7 @@
                                         <br>
                                         <strong>Dosage:</strong> ${med.dosage}
                                         <br>
-                                        <strong>Frequency:</strong> ${med.frequency}
+                                        <strong>Frequency:</strong> Every ${med.frequency} hour(s)
                                         <br>
                                         <strong>Special Instructions:</strong> ${med.medication.specialInstructions}
                                         <br>
