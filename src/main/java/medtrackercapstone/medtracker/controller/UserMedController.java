@@ -174,6 +174,7 @@ public class UserMedController {
 
             userMed.setUser(user);
 
+            // Saves the updated userMed to the database
             userMedDao.save(userMed);
 
             // Redirects user to their dashboard page

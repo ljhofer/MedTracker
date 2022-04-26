@@ -49,6 +49,8 @@ public class AjaxController {
 
         List<String> splitList = new ArrayList<>();
 
+
+        // Finds the current user id to query their userMeds
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
@@ -62,6 +64,7 @@ public class AjaxController {
 
         }
 
+        // returns split list of string to the JSP
         return new ResponseEntity<>(splitList, HttpStatus.OK);
     }
 
